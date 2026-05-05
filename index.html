@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sproutbrite PPC Dashboard — Week 18</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --navy:   #0D1B2A;
+    --blue:   #1E5FA8;
+    --accent: #2196F3;
+    --green:  #2E7D32;
+    --green-l:#E8F5E9;
+    --red:    #C62828;
+    --red-l:  #FFEBEE;
+    --amber:  #E65100;
+    --amber-l:#FFF3E0;
+    --grey:   #90A4AE;
+    --grey-l: #F5F7FA;
+    --border: #E0E7EF;
+    --white:  #FFFFFF;
+    --text:   #1A2332;
+    --text-2: #546E7A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #F0F4F8; color: var(--text); font-size: 14px; }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--navy);
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  .topbar-brand { display: flex; align-items: center; gap: 14px; }
+  .topbar-logo {
+    width: 34px; height: 34px;
+    background: var(--blue);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 16px; color: white;
+  }
+  .topbar-title { font-size: 17px; font-weight: 700; color: white; }
+  .topbar-period { font-size: 12px; color: #90CAF9; margin-top: 1px; }
+  .topbar-badge {
+    background: var(--blue);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ── NAV TABS ── */
+  .nav-wrap {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 28px;
+    position: sticky;
+    top: 60px;
+    z-index: 99;
+  }
+  .nav-tabs { display: flex; gap: 0; }
+  .nav-tab {
+    padding: 14px 22px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-2);
+    border-bottom: 3px solid transparent;
+    transition: all .18s;
+    white-space: nowrap;
+  }
+  .nav-tab:hover { color: var(--blue); }
+  .nav-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+  /* ── CONTENT ── */
+  .content { padding: 24px 28px; max-width: 1400px; margin: 0 auto; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 24px; }
+  .kpi-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 18px;
+    border-left: 4px solid var(--blue);
+    box-shadow: 0 1px 6px rgba(0,0,0,.07);
+  }
+  .kpi-card.green  { border-left-color: var(--green); }
+  .kpi-card.red    { border-left-color: var(--red); }
+  .kpi-card.amber  { border-left-color: var(--amber); }
+  .kpi-label { font-size: 11px; font-weight: 600; color: var(--grey); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+  .kpi-value { font-size: 26px; font-weight: 800; color: var(--navy); line-height: 1; }
+  .kpi-value.green { color: var(--green); }
+  .kpi-value.red   { color: var(--red); }
+  .kpi-value.amber { color: var(--amber); }
+  .kpi-sub { font-size: 11px; color: var(--grey); margin-top: 5px; }
+
+  /* ── CHARTS ROW ── */
+  .charts-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .chart-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.07);
+  }
+  .chart-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+  .chart-wrap { position: relative; height: 180px; }
+
+  /* ── WOW TABLE (overview) ── */
+  .wow-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.07);
+    margin-bottom: 24px;
+  }
+  .card-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .badge { background: var(--grey-l); color: var(--text-2); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+  .badge.green { background: var(--green-l); color: var(--green); }
+  .badge.red   { background: var(--red-l);   color: var(--red); }
+  .badge.amber { background: var(--amber-l); color: var(--amber); }
+  .badge.blue  { background: #E3F2FD; color: var(--blue); }
+
+  /* ── TABLES ── */
+  .tbl-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead { background: var(--navy); }
+  thead th {
+    padding: 11px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+  }
+  thead th:hover { background: var(--blue); }
+  thead th .sort-icon { margin-left: 4px; opacity: .4; font-size: 10px; }
+  thead th.asc .sort-icon::after  { content: ' ▲'; opacity: 1; }
+  thead th.desc .sort-icon::after { content: ' ▼'; opacity: 1; }
+  thead th:not(.asc):not(.desc) .sort-icon::after { content: ' ⇅'; }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background .12s; }
+  tbody tr:hover { background: #F0F4F8 !important; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(odd)  { background: white; }
+  tbody tr:nth-child(even) { background: var(--grey-l); }
+  td { padding: 10px 14px; vertical-align: top; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.ctr { text-align: center; }
+  .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .pill.green  { background: var(--green-l); color: var(--green); }
+  .pill.red    { background: var(--red-l);   color: var(--red); }
+  .pill.amber  { background: var(--amber-l); color: var(--amber); }
+  .pill.blue   { background: #E3F2FD;        color: var(--blue); }
+  .pill.grey   { background: var(--grey-l);  color: var(--text-2); }
+  .bold { font-weight: 700; }
+  .text-green { color: var(--green); font-weight: 700; }
+  .text-red   { color: var(--red);   font-weight: 700; }
+  .text-amber { color: var(--amber); font-weight: 700; }
+  .text-blue  { color: var(--blue);  font-weight: 700; }
+
+  /* ── SUB-TABS ── */
+  .sub-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .sub-tab {
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid var(--border);
+    color: var(--text-2);
+    background: white;
+    transition: all .15s;
+  }
+  .sub-tab:hover { border-color: var(--blue); color: var(--blue); }
+  .sub-tab.active { background: var(--blue); border-color: var(--blue); color: white; }
+
+  .sub-section { display: none; }
+  .sub-section.active { display: block; }
+
+  /* ── SECTION TITLES ── */
+  .sec-hdr {
+    font-size: 15px; font-weight: 800; color: var(--navy);
+    margin-bottom: 14px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sec-hdr .count-tag {
+    background: var(--navy); color: white;
+    font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600;
+  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .panel {
+    background: white; border-radius: 12px; padding: 20px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.07);
+  }
+  .panel-title { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+  .panel-title.green { color: var(--green); }
+  .panel-title.red   { color: var(--red); }
+  .panel-title.amber { color: var(--amber); }
+  .note { font-size: 11px; color: var(--grey); font-style: italic; margin-top: 10px; }
+
+  /* ── CAMPAIGN CHANGE ROW ── */
+  .change-table thead { background: var(--blue); }
+  .bid-table   thead { background: var(--navy); }
+  .neg-table   thead { background: var(--red); }
+  .grad-table  thead { background: var(--green); }
+
+  /* ── SEARCH ── */
+  .search-wrap { margin-bottom: 12px; }
+  .search-input {
+    width: 100%; max-width: 360px;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    background: white;
+  }
+  .search-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(33,150,243,.15); }
+
+  /* ── WOW NOTICE ── */
+  .wow-notice {
+    background: #E3F2FD; border: 1px solid #BBDEFB; border-radius: 8px;
+    padding: 10px 16px; color: var(--blue); font-size: 12px; margin-top: 8px;
+  }
+
+  @media (max-width: 900px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .charts-row { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo">SB</div>
+    <div>
+      <div class="topbar-title">Sproutbrite PPC Dashboard</div>
+      <div class="topbar-period">Week 18 &nbsp;|&nbsp; Apr 27 – May 3, 2026 &nbsp;|&nbsp; Ramzan Malik, Senior PPC Manager</div>
+    </div>
+  </div>
+  <div class="topbar-badge">Week 18</div>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showTab('overview')">📊 Overview</div>
+    <div class="nav-tab" onclick="showTab('sku')">📦 SKU Performance</div>
+    <div class="nav-tab" onclick="showTab('actions')">⚙️ Campaign Actions</div>
+    <div class="nav-tab" onclick="showTab('terms')">🔍 Search Terms</div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════ OVERVIEW ═══════════════════════ -->
+<div id="tab-overview" class="section active">
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Total Ad Spend</div>
+      <div class="kpi-value">$2,873</div>
+      <div class="kpi-sub">Week 18 PPC spend</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">PPC Sales</div>
+      <div class="kpi-value">$5,357</div>
+      <div class="kpi-sub">Attributed ad sales</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-label">Blended ACOS</div>
+      <div class="kpi-value amber">53.6%</div>
+      <div class="kpi-sub">Target: &lt;40%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Total Orders</div>
+      <div class="kpi-value">345</div>
+      <div class="kpi-sub">PPC attributed orders</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Gross Profit</div>
+      <div class="kpi-value green">$3,452</div>
+      <div class="kpi-sub">After all costs</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">Spend vs Sales</div>
+      <div class="chart-wrap"><canvas id="chartSpendSales"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Top 5 SKUs by Gross Profit ($)</div>
+      <div class="chart-wrap"><canvas id="chartTopSKU"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Campaign Action Summary</div>
+      <div class="chart-wrap"><canvas id="chartActions"></canvas></div>
+    </div>
+  </div>
+
+  <!-- WoW -->
+  <div class="wow-card">
+    <div class="card-title">Week-over-Week Comparison <span class="badge">W18 vs W17</span></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="ctr">Previous Week (W17)</th>
+            <th class="ctr">This Week (W18)</th>
+            <th class="ctr">Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="bold">PPC Sales</td><td class="ctr text-blue">—</td><td class="ctr bold">$5,357</td><td class="ctr"><span class="pill grey">Prior week needed</span></td></tr>
+          <tr><td class="bold">Ad Spend</td><td class="ctr text-blue">—</td><td class="ctr bold">$2,873</td><td class="ctr"><span class="pill grey">Prior week needed</span></td></tr>
+          <tr><td class="bold">Blended ACOS</td><td class="ctr text-blue">—</td><td class="ctr bold">53.6%</td><td class="ctr"><span class="pill grey">Prior week needed</span></td></tr>
+          <tr><td class="bold">Gross Profit</td><td class="ctr text-blue">—</td><td class="ctr bold">$3,452</td><td class="ctr"><span class="pill grey">Prior week needed</span></td></tr>
+          <tr><td class="bold">Total Orders</td><td class="ctr text-blue">—</td><td class="ctr bold">345</td><td class="ctr"><span class="pill grey">Prior week needed</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="wow-notice">ℹ️ Upload last week's Dashboard file alongside this week's data to auto-populate the WoW comparison column.</div>
+  </div>
+
+  <!-- Quick SKU snapshot -->
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title green">🏆 Top 3 SKUs this Week</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>SKU</th><th class="num">GP</th><th class="num">Margin</th><th class="num">Real ACOS</th></tr></thead>
+          <tbody>
+            <tr><td class="bold">SB-124</td><td class="num text-green">$239</td><td class="num">19.3%</td><td class="num">22.1%</td></tr>
+            <tr><td class="bold">SB-032</td><td class="num text-green">$206</td><td class="num">28.7%</td><td class="num">20.5%</td></tr>
+            <tr><td class="bold">SB-098</td><td class="num text-green">$181</td><td class="num">22.7%</td><td class="num">19.4%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title red">⚠ Negative GP SKUs</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>SKU</th><th class="num">GP</th><th class="num">Margin</th><th class="num">Real ACOS</th></tr></thead>
+          <tbody>
+            <tr><td class="bold">SBI-110</td><td class="num text-red">-$34</td><td class="num text-red">-23.8%</td><td class="num">19.1%</td></tr>
+            <tr><td class="bold">SB-093</td><td class="num text-red">-$27</td><td class="num text-red">-67.9%</td><td class="num">0.3%</td></tr>
+            <tr><td class="bold">SB-008</td><td class="num text-red">-$12</td><td class="num text-red">-3.3%</td><td class="num">43.2%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SKU PERFORMANCE ═══════════════════════ -->
+<div id="tab-sku" class="section">
+  <div class="sec-hdr">SKU Performance Summary <span class="count-tag">Week 18</span></div>
+
+  <div class="panel" style="margin-bottom:20px">
+    <div class="panel-title green">Top Performers — by Gross Profit</div>
+    <div class="search-wrap"><input class="search-input" placeholder="Search SKU…" oninput="filterTable('top5-tbl', this.value)"></div>
+    <div class="tbl-wrap">
+      <table id="top5-tbl" data-sort-col="-1">
+        <thead>
+          <tr>
+            <th onclick="sortTable('top5-tbl',0)">SKU <span class="sort-icon"></span></th>
+            <th onclick="sortTable('top5-tbl',1)" class="num">Units <span class="sort-icon"></span></th>
+            <th onclick="sortTable('top5-tbl',2)" class="num">Sales <span class="sort-icon"></span></th>
+            <th onclick="sortTable('top5-tbl',3)" class="num">Ad Spend <span class="sort-icon"></span></th>
+            <th onclick="sortTable('top5-tbl',4)" class="num">Gross Profit <span class="sort-icon"></span></th>
+            <th onclick="sortTable('top5-tbl',5)" class="num">Margin <span class="sort-icon"></span></th>
+            <th onclick="sortTable('top5-tbl',6)" class="num">Real ACOS <span class="sort-icon"></span></th>
+            <th onclick="sortTable('top5-tbl',7)" class="num">BSR <span class="sort-icon"></span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="bold">SB-124</td><td class="num">94</td><td class="num">$1,241</td><td class="num">$275</td><td class="num text-green">$239</td><td class="num text-green">19.3%</td><td class="num">22.1%</td><td class="num">18,041</td></tr>
+          <tr><td class="bold">SB-032</td><td class="num">45</td><td class="num">$718</td><td class="num">$147</td><td class="num text-green">$206</td><td class="num text-green">28.7%</td><td class="num">20.5%</td><td class="num">27,046</td></tr>
+          <tr><td class="bold">SB-098</td><td class="num">59</td><td class="num">$801</td><td class="num">$155</td><td class="num text-green">$181</td><td class="num text-green">22.7%</td><td class="num">19.4%</td><td class="num">27,420</td></tr>
+          <tr><td class="bold">SB-105</td><td class="num">43</td><td class="num">$574</td><td class="num">$63</td><td class="num text-green">$167</td><td class="num text-green">29.1%</td><td class="num">11.1%</td><td class="num">35,177</td></tr>
+          <tr><td class="bold">SB-114</td><td class="num">38</td><td class="num">$505</td><td class="num">$63</td><td class="num text-green">$155</td><td class="num text-green">30.7%</td><td class="num">12.4%</td><td class="num">34,601</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title red">Under-Performers — Negative Gross Profit</div>
+    <div class="search-wrap"><input class="search-input" placeholder="Search SKU…" oninput="filterTable('bot5-tbl', this.value)"></div>
+    <div class="tbl-wrap">
+      <table id="bot5-tbl" data-sort-col="-1">
+        <thead>
+          <tr>
+            <th onclick="sortTable('bot5-tbl',0)">SKU <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bot5-tbl',1)" class="num">Units <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bot5-tbl',2)" class="num">Sales <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bot5-tbl',3)" class="num">Ad Spend <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bot5-tbl',4)" class="num">Gross Profit <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bot5-tbl',5)" class="num">Margin <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bot5-tbl',6)" class="num">Real ACOS <span class="sort-icon"></span></th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="bold">SBI-110</td><td class="num">11</td><td class="num">$142</td><td class="num">$27</td><td class="num text-red">-$34</td><td class="num text-red">-23.8%</td><td class="num">19.1%</td><td><span class="pill red">PAUSE CAMPAIGNS</span></td></tr>
+          <tr><td class="bold">SB-093</td><td class="num">2</td><td class="num">$40</td><td class="num">$0</td><td class="num text-red">-$27</td><td class="num text-red">-67.9%</td><td class="num">0.3%</td><td><span class="pill red">PAUSE CAMPAIGNS</span></td></tr>
+          <tr><td class="bold">SB-008</td><td class="num">28</td><td class="num">$374</td><td class="num">$162</td><td class="num text-red">-$12</td><td class="num text-red">-3.3%</td><td class="num">43.2%</td><td><span class="pill amber">CUT BIDS 30%</span></td></tr>
+          <tr><td class="bold">SB-051</td><td class="num">10</td><td class="num">$136</td><td class="num">$44</td><td class="num text-red">-$12</td><td class="num text-red">-8.6%</td><td class="num">32.0%</td><td><span class="pill amber">REDUCE SPEND</span></td></tr>
+          <tr><td class="bold">SB-099</td><td class="num">33</td><td class="num">$444</td><td class="num">$191</td><td class="num text-red">-$11</td><td class="num text-red">-2.4%</td><td class="num">43.0%</td><td><span class="pill amber">CUT BIDS 30%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CAMPAIGN ACTIONS ═══════════════════════ -->
+<div id="tab-actions" class="section">
+  <div class="sec-hdr">Campaign Actions — Week 18</div>
+
+  <div class="sub-tabs">
+    <div class="sub-tab active" onclick="showSubTab('bid-up')">⬆ Bid Increases (5)</div>
+    <div class="sub-tab" onclick="showSubTab('bid-down')">⬇ Bid Reductions (5)</div>
+    <div class="sub-tab" onclick="showSubTab('negatives')">🚫 Negatives Added (4)</div>
+    <div class="sub-tab" onclick="showSubTab('graduations')">🎓 Graduations (10)</div>
+  </div>
+
+  <!-- BID INCREASES -->
+  <div id="sub-bid-up" class="sub-section active">
+    <div class="panel">
+      <div class="panel-title blue">Bid Increases Applied — 5 Targets</div>
+      <div class="tbl-wrap">
+        <table class="bid-table" id="bidup-tbl">
+          <thead><tr>
+            <th onclick="sortTable('bidup-tbl',0)">Target Keyword <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bidup-tbl',1)">Campaign <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bidup-tbl',2)" class="num">Prev Bid <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bidup-tbl',3)" class="num">New Bid <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bidup-tbl',4)" class="num">Orders <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bidup-tbl',5)" class="num">ACOS <span class="sort-icon"></span></th>
+            <th onclick="sortTable('bidup-tbl',6)" class="num">Spend <span class="sort-icon"></span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td class="bold">posters</td><td>SB-All - Catch All - SP - Broad - Posters Keywords - Seeding</td><td class="num">$0.36</td><td class="num text-green">$0.66</td><td class="num bold">11</td><td class="num text-green">32.1%</td><td class="num">$51.11</td></tr>
+            <tr><td class="bold">math poster</td><td>SB-112 - Fraction Operations Poster  - SP - Phrase - Top SQP 1</td><td class="num">$0.91</td><td class="num text-green">$1.33</td><td class="num bold">8</td><td class="num text-green">38.5%</td><td class="num">$44.83</td></tr>
+            <tr><td class="bold">posters for classroom</td><td>SP - NB Broad - Top SQP 1 - Better Together Poster Set - B07MXMXTDZ - Sproutbrite (Posters)</td><td class="num">$0.55</td><td class="num text-green">$0.67</td><td class="num bold">8</td><td class="num text-green">5.2%</td><td class="num">$6.60</td></tr>
+            <tr><td class="bold">sproutbrite</td><td>SB-All - Low Hanging Fruit - All Match Types - Low Bid - High TOS150%</td><td class="num">$0.85</td><td class="num text-green">$1.58</td><td class="num bold">6</td><td class="num text-green">14.0%</td><td class="num">$11.04</td></tr>
+            <tr><td class="bold">science bulletin board</td><td>SB-124 - Growth Mindset - SP - Manual - Exact + Broad - Generic KWs</td><td class="num">$0.36</td><td class="num text-green">$0.58</td><td class="num bold">3</td><td class="num text-green">2.0%</td><td class="num">$0.85</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">* New bid = 85% of Amazon suggested bid (conservative scale)</p>
+    </div>
+  </div>
+
+  <!-- BID REDUCTIONS -->
+  <div id="sub-bid-down" class="sub-section">
+    <div class="panel">
+      <div class="panel-title amber">Bid Reductions Applied — 5 Targets</div>
+      <div class="tbl-wrap">
+        <table class="change-table" id="biddown-tbl">
+          <thead><tr>
+            <th onclick="sortTable('biddown-tbl',0)">Target <span class="sort-icon"></span></th>
+            <th onclick="sortTable('biddown-tbl',1)">Campaign <span class="sort-icon"></span></th>
+            <th onclick="sortTable('biddown-tbl',2)" class="num">Prev Bid <span class="sort-icon"></span></th>
+            <th onclick="sortTable('biddown-tbl',3)" class="num">New Bid <span class="sort-icon"></span></th>
+            <th onclick="sortTable('biddown-tbl',4)" class="num">ACOS <span class="sort-icon"></span></th>
+            <th onclick="sortTable('biddown-tbl',5)" class="num">Spend <span class="sort-icon"></span></th>
+            <th onclick="sortTable('biddown-tbl',6)" class="num">Orders <span class="sort-icon"></span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td class="bold">loose-match</td><td>SB-039,008,028 - Empowerment Posters - Parent  - SP - Auto - Catch All</td><td class="num">$0.55</td><td class="num text-amber">$0.41</td><td class="num text-amber">73.4%</td><td class="num text-red">$221.42</td><td class="num">22</td></tr>
+            <tr><td class="bold">math posters</td><td>SB-Math Posters SP -  PAT+Branded + Exact + Phrase + Broad - Generic KWs (Highly Broad)</td><td class="num">$1.76</td><td class="num text-amber">$1.32</td><td class="num text-red">102.8%</td><td class="num text-red">$126.18</td><td class="num">9</td></tr>
+            <tr><td class="bold">loose-match</td><td>SB-All - SP - Primary Auto 2 - Catch All - Mod Bid</td><td class="num">$0.41</td><td class="num text-amber">$0.31</td><td class="num text-red">190.4%</td><td class="num text-red">$105.64</td><td class="num">4</td></tr>
+            <tr><td class="bold">math posters</td><td>SB-All - Low Hanging Fruit - All Match Types - Low Bid - High TOS150%</td><td class="num">$0.75</td><td class="num text-amber">$0.56</td><td class="num text-red">173.3%</td><td class="num text-red">$48.34</td><td class="num">2</td></tr>
+            <tr><td class="bold">loose-match</td><td>SB-021+124+040 - Growth Posters  - SP - Auto - Close/Loose</td><td class="num">$0.46</td><td class="num text-amber">$0.34</td><td class="num text-red">114.2%</td><td class="num text-red">$31.06</td><td class="num">2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">* New bid = 25% reduction from current bid</p>
+    </div>
+  </div>
+
+  <!-- NEGATIVES -->
+  <div id="sub-negatives" class="sub-section">
+    <div class="panel">
+      <div class="panel-title red">Negative Keywords Added — 4 Terms</div>
+      <div class="tbl-wrap">
+        <table class="neg-table" id="neg-tbl">
+          <thead><tr>
+            <th onclick="sortTable('neg-tbl',0)">Search Term <span class="sort-icon"></span></th>
+            <th onclick="sortTable('neg-tbl',1)">Campaign <span class="sort-icon"></span></th>
+            <th onclick="sortTable('neg-tbl',2)" class="ctr">Match Type <span class="sort-icon"></span></th>
+            <th onclick="sortTable('neg-tbl',3)" class="ctr">Negative Type <span class="sort-icon"></span></th>
+            <th onclick="sortTable('neg-tbl',4)" class="num">Wasted Spend <span class="sort-icon"></span></th>
+            <th onclick="sortTable('neg-tbl',5)" class="num">Clicks <span class="sort-icon"></span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td class="bold">learning posters for toddlers 1-3</td><td>SB-100 New - ABC Posters 18 set - SP - Exact - Top KWS</td><td class="ctr"><span class="pill blue">EXACT</span></td><td class="ctr"><span class="pill amber">Exact Negative</span></td><td class="num text-red">$28.15</td><td class="num">26</td></tr>
+            <tr><td class="bold">math posters for middle school</td><td>SB-Math Posters SP -  PAT+Branded + Exact + Phrase + Broad - Generic KWs (Highly Broad)</td><td class="ctr"><span class="pill grey">PHRASE</span></td><td class="ctr"><span class="pill amber">Phrase Negative</span></td><td class="num text-red">$23.22</td><td class="num">14</td></tr>
+            <tr><td class="bold">bulletin board decorations</td><td>SB-124 - Mindset Poster / Motivational  - SP - Auto - Amz Business targeting</td><td class="ctr"><span class="pill grey">AUTO</span></td><td class="ctr"><span class="pill amber">Phrase Negative</span></td><td class="num text-red">$17.61</td><td class="num">9</td></tr>
+            <tr><td class="bold">math posters for high school</td><td>SB-112 - Fraction Operations Poster  - SP - Phrase - Top SQP 1</td><td class="ctr"><span class="pill grey">PHRASE</span></td><td class="ctr"><span class="pill amber">Phrase Negative</span></td><td class="num text-red">$12.52</td><td class="num">11</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRADUATIONS -->
+  <div id="sub-graduations" class="sub-section">
+    <div class="panel">
+      <div class="panel-title green">Keyword Graduations — 10 Terms Moved to Exact</div>
+      <div class="tbl-wrap">
+        <table class="grad-table" id="grad-tbl">
+          <thead><tr>
+            <th onclick="sortTable('grad-tbl',0)">Search Term <span class="sort-icon"></span></th>
+            <th onclick="sortTable('grad-tbl',1)" class="ctr">From <span class="sort-icon"></span></th>
+            <th onclick="sortTable('grad-tbl',2)" class="num">Orders <span class="sort-icon"></span></th>
+            <th onclick="sortTable('grad-tbl',3)" class="num">ACOS <span class="sort-icon"></span></th>
+            <th onclick="sortTable('grad-tbl',4)">Destination Campaign <span class="sort-icon"></span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td class="bold">career day decorations</td><td class="ctr"><span class="pill grey">Auto</span></td><td class="num bold">6</td><td class="num text-green">3.2%</td><td class="text-green">SB-011 | Welcome Banner - SP - Exact</td></tr>
+            <tr><td class="bold">classroom banner poster</td><td class="ctr"><span class="pill blue">Broad</span></td><td class="num bold">6</td><td class="num text-green">1.6%</td><td class="text-green">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td></tr>
+            <tr><td class="bold">classroom rules poster middle school</td><td class="ctr"><span class="pill blue">Broad</span></td><td class="num bold">6</td><td class="num text-green">1.3%</td><td class="text-green">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td></tr>
+            <tr><td class="bold">classroom posters</td><td class="ctr"><span class="pill blue">Broad</span></td><td class="num bold">5</td><td class="num text-green">2.8%</td><td class="text-green">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td></tr>
+            <tr><td class="bold">english posters for classroom</td><td class="ctr"><span class="pill grey">Auto</span></td><td class="num bold">4</td><td class="num text-green">6.6%</td><td class="text-green">SB-049,51,52 - Reading Posters - SP - Exact - MKW</td></tr>
+            <tr><td class="bold">classroom rules</td><td class="ctr"><span class="pill grey">Auto</span></td><td class="num bold">4</td><td class="num text-green">3.4%</td><td class="text-green">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td></tr>
+            <tr><td class="bold">sproutbrite 13.5 x 39 pemdas</td><td class="ctr"><span class="pill blue">Broad</span></td><td class="num bold">4</td><td class="num text-green">0.9%</td><td class="text-green">SB-All - Branded Exact - General Posters</td></tr>
+            <tr><td class="bold">signs math class</td><td class="ctr"><span class="pill grey">Auto</span></td><td class="num bold">4</td><td class="num text-green">1.9%</td><td class="text-green">SB-126 - Essential Math Posters - SP - Manual Exact - Amz Business targeting</td></tr>
+            <tr><td class="bold">daycare center poster</td><td class="ctr"><span class="pill grey">Auto</span></td><td class="num bold">4</td><td class="num text-green">1.1%</td><td class="text-green">SB-011 | Welcome Banner - SP - Exact</td></tr>
+            <tr><td class="bold">mental health awareness banner</td><td class="ctr"><span class="pill grey">Auto</span></td><td class="num bold">3</td><td class="num text-green">3.6%</td><td class="text-green">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">* Each term has been added as exact negative in its source campaign to prevent bid cannibalisation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SEARCH TERMS ═══════════════════════ -->
+<div id="tab-terms" class="section">
+  <div class="sec-hdr">Search Term Highlights — Week 18</div>
+
+  <div class="panel" style="margin-bottom:20px">
+    <div class="panel-title green">Top Converting Search Terms</div>
+    <div class="search-wrap"><input class="search-input" placeholder="Filter terms…" oninput="filterTable('topterms-tbl', this.value)"></div>
+    <div class="tbl-wrap">
+      <table id="topterms-tbl" data-sort-col="-1">
+        <thead><tr>
+          <th onclick="sortTable('topterms-tbl',0)">Search Term <span class="sort-icon"></span></th>
+          <th onclick="sortTable('topterms-tbl',1)">Campaign <span class="sort-icon"></span></th>
+          <th onclick="sortTable('topterms-tbl',2)" class="ctr">Match <span class="sort-icon"></span></th>
+          <th onclick="sortTable('topterms-tbl',3)" class="num">Orders <span class="sort-icon"></span></th>
+          <th onclick="sortTable('topterms-tbl',4)" class="num">Spend <span class="sort-icon"></span></th>
+          <th onclick="sortTable('topterms-tbl',5)" class="num">ACOS <span class="sort-icon"></span></th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="bold">career day decorations</td><td>SB-056 - Welcome Poster Set - Legacy Auto - Substitute</td><td class="ctr"><span class="pill grey">Auto</span></td><td class="num bold">6</td><td class="num">$2.57</td><td class="num text-green">3.2%</td></tr>
+          <tr><td class="bold">classroom rules poster middle school</td><td>SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td><td class="ctr"><span class="pill blue">Broad</span></td><td class="num bold">6</td><td class="num">$1.08</td><td class="num text-green">1.3%</td></tr>
+          <tr><td class="bold">classroom banner poster</td><td>SP - NB Broad - Top SQP 1 - Better Together Poster Set - B07MXMXTDZ - Sproutbrite (Posters)</td><td class="ctr"><span class="pill blue">Broad</span></td><td class="num bold">6</td><td class="num">$1.32</td><td class="num text-green">1.6%</td></tr>
+          <tr><td class="bold">classroom posters</td><td>SB-010 - School Poster - SP - Broad - Top SQP 1</td><td class="ctr"><span class="pill blue">Broad</span></td><td class="num bold">5</td><td class="num">$2.04</td><td class="num text-green">2.8%</td></tr>
+          <tr><td class="bold">math posters for middle school</td><td>SB-112 - Fraction Operations Poster  - SP - Phrase - Top SQP 1</td><td class="ctr"><span class="pill grey">Phrase</span></td><td class="num bold">5</td><td class="num">$9.96</td><td class="num text-green">14.5%</td></tr>
+          <tr><td class="bold">science posters</td><td>SB-117 | Science Bulletin Board - SP - Manual - Exact</td><td class="ctr"><span class="pill grey">Phrase</span></td><td class="num bold">5</td><td class="num">$7.08</td><td class="num text-green">10.5%</td></tr>
+          <tr><td class="bold">daycare center poster</td><td>SB-All - Catch All - Auto - Mod Bids - Core</td><td class="ctr"><span class="pill grey">Auto</span></td><td class="num bold">4</td><td class="num">$0.61</td><td class="num text-green">1.1%</td></tr>
+          <tr><td class="bold">math posters</td><td>SB-113 - Fraction Conversion Poster - SP - Broad - Top SQP 1</td><td class="ctr"><span class="pill blue">Broad</span></td><td class="num bold">4</td><td class="num">$2.90</td><td class="num text-green">5.2%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title red">Wasted Spend — Zero Orders</div>
+    <div class="search-wrap"><input class="search-input" placeholder="Filter terms…" oninput="filterTable('wasters-tbl', this.value)"></div>
+    <div class="tbl-wrap">
+      <table id="wasters-tbl" data-sort-col="-1">
+        <thead><tr>
+          <th onclick="sortTable('wasters-tbl',0)">Search Term <span class="sort-icon"></span></th>
+          <th onclick="sortTable('wasters-tbl',1)">Campaign <span class="sort-icon"></span></th>
+          <th onclick="sortTable('wasters-tbl',2)" class="num">Wasted Spend <span class="sort-icon"></span></th>
+          <th onclick="sortTable('wasters-tbl',3)" class="num">Clicks <span class="sort-icon"></span></th>
+          <th class="ctr">Action</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="bold">learning posters for toddlers 1-3</td><td>SB-100 New - ABC Posters 18 set - SP - Exact - Top KWS</td><td class="num text-red">$28.15</td><td class="num">26</td><td class="ctr"><span class="pill red">NEGATED ✓</span></td></tr>
+          <tr><td class="bold">math posters for middle school</td><td>SB-Math Posters SP -  PAT+Branded + Exact + Phrase + Broad - Generic KWs (Highly Broad)</td><td class="num text-red">$23.22</td><td class="num">14</td><td class="ctr"><span class="pill red">NEGATED ✓</span></td></tr>
+          <tr><td class="bold">bulletin board decorations</td><td>SB-124 - Mindset Poster / Motivational  - SP - Auto - Amz Business targeting</td><td class="num text-red">$17.61</td><td class="num">9</td><td class="ctr"><span class="pill red">NEGATED ✓</span></td></tr>
+          <tr><td class="bold">math posters for high school</td><td>SB-112 - Fraction Operations Poster  - SP - Phrase - Top SQP 1</td><td class="num text-red">$12.52</td><td class="num">11</td><td class="ctr"><span class="pill red">NEGATED ✓</span></td></tr>
+          <tr><td class="bold">classroom decorations elementary</td><td>SB-029 | Empowerment Poster - SP - Phrase - Highly Relevant</td><td class="num text-amber">$9.92</td><td class="num">10</td><td class="ctr"><span class="pill amber">MONITOR</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+// ── TAB NAVIGATION ────────────────────────────────────────────────────────
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ── SUB-TAB NAVIGATION ────────────────────────────────────────────────────
+function showSubTab(id) {
+  document.querySelectorAll('.sub-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sub-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ── TABLE SORT ────────────────────────────────────────────────────────────
+function sortTable(tableId, col) {
+  const tbl = document.getElementById(tableId);
+  const tbody = tbl.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const headers = tbl.querySelectorAll('thead th');
+  const currentCol = parseInt(tbl.dataset.sortCol || '-1');
+  const currentDir = tbl.dataset.sortDir || 'asc';
+  const newDir = (currentCol === col && currentDir === 'asc') ? 'desc' : 'asc';
+
+  headers.forEach((h, i) => { h.classList.remove('asc','desc'); });
+  headers[col].classList.add(newDir);
+
+  rows.sort((a, b) => {
+    const av = a.cells[col]?.innerText.replace(/[$,%▲▼\s]/g,'') || '';
+    const bv = b.cells[col]?.innerText.replace(/[$,%▲▼\s]/g,'') || '';
+    const an = parseFloat(av.replace(/,/g,'')), bn = parseFloat(bv.replace(/,/g,''));
+    const cmp = (!isNaN(an) && !isNaN(bn)) ? an - bn : av.localeCompare(bv);
+    return newDir === 'asc' ? cmp : -cmp;
+  });
+
+  rows.forEach(r => tbody.appendChild(r));
+  tbl.dataset.sortCol = col;
+  tbl.dataset.sortDir = newDir;
+}
+
+// ── TABLE FILTER ──────────────────────────────────────────────────────────
+function filterTable(tableId, query) {
+  const q = query.toLowerCase();
+  document.getElementById(tableId).querySelectorAll('tbody tr').forEach(row => {
+    row.style.display = row.innerText.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+// ── CHARTS ────────────────────────────────────────────────────────────────
+const chartDefaults = { font: { family: 'Segoe UI, Arial, sans-serif' } };
+Chart.defaults.font.family = 'Segoe UI, Arial, sans-serif';
+
+// Spend vs Sales bar
+new Chart(document.getElementById('chartSpendSales'), {
+  type: 'bar',
+  data: {
+    labels: ['Ad Spend', 'PPC Sales', 'Gross Profit'],
+    datasets: [{
+      data: [2873, 5357, 3452],
+      backgroundColor: ['#E65100', '#1E5FA8', '#2E7D32'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { ticks: { callback: v => '$' + v.toLocaleString() }, grid: { color: '#F0F4F8' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// Top SKU GP
+new Chart(document.getElementById('chartTopSKU'), {
+  type: 'bar',
+  data: {
+    labels: ['SB-124', 'SB-032', 'SB-098', 'SB-105', 'SB-114'],
+    datasets: [{
+      label: 'Gross Profit',
+      data: [239, 206, 181, 167, 155],
+      backgroundColor: '#2E7D32',
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { callback: v => '$' + v }, grid: { color: '#F0F4F8' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// Actions summary donut
+new Chart(document.getElementById('chartActions'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Bid Increases', 'Bid Reductions', 'Negatives Added', 'Graduations'],
+    datasets: [{
+      data: [5, 5, 4, 10],
+      backgroundColor: ['#2196F3', '#E65100', '#C62828', '#2E7D32'],
+      borderWidth: 2, borderColor: '#fff',
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 10 } }
+    },
+    cutout: '65%'
+  }
+});
+</script>
+</body>
+</html>
