@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAC1ElEQVR4nO2ZsU4cMRCG7Sjt9XeUXLWKeIN0kZAoENeEKt31yQNQ5wGgp6OCBkSBhMRTRNFVuZKlzwNsGvbYnZsZj+0ZTIS/BrRrz87/ezze1TlXqVQqlUqlUnmfeOsHtE3T5cyfrVamOZoEzxVNYWGGakAr4RBNI1QCvZZwiIYRWQGkwqfHq6T4T5eNaFyOEckTQ+JTRVOEzEg1IWkSJ15bOIQzIsWEqAklhUO0jBAPpMSLhB9InwK4Cw+hjJCaIBqULD5VOCRgRI4JyQaw4rWEYxBmYCaoGBAl3lL4EEUT2Jua4g8fj/gBgNudG36AkgnkDbF4RnisaArWDMSIGBM+SJMoJT4YC8kh5kj+iF3MebfXFI7FDW4NgrZpOqwK0LKABkhXnxP/++kimOSQT9Nv5D3UBMFWEBkg2vsR4mOFQygjJCZIekGwB0j2U6r49Xzi1vMJO4aKIdlqktxHBoj2vvCsz135pFiC3KBGtAn2pK4+lfDJ6cP4whl+/eePL2hMuB0OH4+CTXF6vGI/nMTHoHNuy+Es8QzUWCz2Vg6Rb6ObhpDS/ODDYYLr+cSdf7/eeujyakEmdP51PB6rBlgJW1UQ0QzJCpB0fo6+uS3PFptry6sFKx4bE2qSKCBXbiuTFZC7+s6B5GdkDjTty7+7f/6ObuVWQbACcjk5fXgp/0zx2DbSwsyADSnih/NS5wsxNSC034PMlOIw2FfAG8fMAO1VW39OOA0EbE6BrlP+deuX1/+5bK9T/S3Te8+/CkdxDwQbNy8t9Ax4DaDJ+/kVoWcATMZiCxjwf1WAwopD6jFoFlm5Y6vHe6ZWgGn0ftXawDhpHAPsK6AFf1PnG2FrwPDczvkkhue/IrYG9MfWfuejy3iv86Njz8gEu28BDu4lCTPq3ncW7wDe+0IGDOlX1kBgCO99PQarAaUTKE35HlCQ2gNc3QLVgGpA6QRK8+4N+AcK7zmeeGgypwAAAABJRU5ErkJggg==">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAC1ElEQVR4nO2ZsU4cMRCG7Sjt9XeUXLWKeIN0kZAoENeEKt31yQNQ5wGgp6OCBkSBhMRTRNFVuZKlzwNsGvbYnZsZj+0ZTIS/BrRrz87/ezze1TlXqVQqlUqlUnmfeOsHtE3T5cyfrVamOZoEzxVNYWGGakAr4RBNI1QCvZZwiIYRWQGkwqfHq6T4T5eNaFyOEckTQ+JTRVOEzEg1IWkSJ15bOIQzIsWEqAklhUO0jBAPpMSLhB9InwK4Cw+hjJCaIBqULD5VOCRgRI4JyQaw4rWEYxBmYCaoGBAl3lL4EEUT2Jua4g8fj/gBgNudG36AkgnkDbF4RnisaArWDMSIGBM+SJMoJT4YC8kh5kj+iF3MebfXFI7FDW4NgrZpOqwK0LKABkhXnxP/++kimOSQT9Nv5D3UBMFWEBkg2vsR4mOFQygjJCZIekGwB0j2U6r49Xzi1vMJO4aKIdlqktxHBoj2vvCsz135pFiC3KBGtAn2pK4+lfDJ6cP4whl+/eePL2hMuB0OH4+CTXF6vGI/nMTHoHNuy+Es8QzUWCz2Vg6Rb6ObhpDS/ODDYYLr+cSdf7/eeujyakEmdP51PB6rBlgJW1UQ0QzJCpB0fo6+uS3PFptry6sFKx4bE2qSKCBXbiuTFZC7+s6B5GdkDjTty7+7f/6ObuVWQbACcjk5fXgp/0zx2DbSwsyADSnih/NS5wsxNSC034PMlOIw2FfAG8fMAO1VW39OOA0EbE6BrlP+deuX1/+5bK9T/S3Te8+/CkdxDwQbNy8t9Ax4DaDJ+/kVoWcATMZiCxjwf1WAwopD6jFoFlm5Y6vHe6ZWgGn0ftXawDhpHAPsK6AFf1PnG2FrwPDczvkkhue/IrYG9MfWfuejy3iv86Njz8gEu28BDu4lCTPq3ncW7wDe+0IGDOlX1kBgCO99PQarAaUTKE35HlCQ2gNc3QLVgGpA6QRK8+4N+AcK7zmeeGgypwAAAABJRU5ErkJggg==">
+<title>Sproutbrite PPC Dashboard — Week 19</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --green:#16a34a;--green-bg:#f0fdf4;--green-border:#bbf7d0;
+    --red:#dc2626;--red-bg:#fff1f2;--red-border:#fecdd3;
+    --amber:#d97706;--amber-bg:#fffbeb;--amber-border:#fde68a;
+    --blue:#2563eb;--blue-bg:#eff6ff;--blue-border:#bfdbfe;
+    --slate:#475569;--dark:#0f172a;--mid:#64748b;--light:#f8fafc;
+    --border:#e2e8f0;--white:#ffffff;
+    --font:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--font);background:#f1f5f9;color:var(--dark);font-size:14px;}
+
+  /* HEADER */
+  .header{background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);color:white;padding:24px 32px;}
+  .header-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;}
+  .header h1{font-size:22px;font-weight:700;letter-spacing:-0.3px;}
+  .header .period{font-size:13px;opacity:0.75;margin-top:4px;}
+  .header-badge{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;white-space:nowrap;}
+
+  /* WEEK SWITCHER */
+  .week-switcher{display:flex;align-items:center;gap:8px;margin-top:16px;}
+  .week-switcher span{font-size:12px;opacity:0.75;font-weight:600;}
+  .week-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:8px;color:white;padding:6px 18px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s;}
+  .week-btn:hover{background:rgba(255,255,255,0.25);}
+  .week-btn.active{background:white;color:#1e3a5f;border-color:white;}
+
+  /* TABS */
+  .tab-bar{background:white;border-bottom:2px solid var(--border);padding:0 32px;display:flex;gap:0;overflow-x:auto;}
+  .tab-btn{padding:14px 20px;font-size:13px;font-weight:600;color:var(--mid);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all 0.15s;}
+  .tab-btn:hover{color:var(--blue);}
+  .tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
+  .tab-content{display:none;padding:28px 32px;}
+  .tab-content.active{display:block;}
+
+  /* KPI GRID */
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:14px;margin-bottom:28px;}
+  .kpi-card{background:white;border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+  .kpi-card .label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--mid);margin-bottom:2px;display:flex;align-items:center;gap:6px;}
+  .kpi-card .label .wk-badge{background:#dbeafe;color:#1d4ed8;border-radius:4px;font-size:10px;font-weight:700;padding:1px 5px;}
+  .kpi-card .label .wk-badge.w19{background:#dcfce7;color:#15803d;}
+  .kpi-card .value{font-size:24px;font-weight:700;color:var(--dark);line-height:1.2;margin-top:4px;}
+  .kpi-card .delta{font-size:12px;font-weight:600;margin-top:6px;display:flex;align-items:center;gap:4px;}
+  .kpi-card .delta.up{color:var(--green);}
+  .kpi-card .delta.down{color:var(--red);}
+  .kpi-card .delta.neutral{color:var(--mid);font-weight:400;}
+  .kpi-card .prev{font-size:11px;color:var(--mid);margin-top:3px;}
+  .kpi-card .sub{font-size:11px;color:var(--mid);margin-top:3px;}
+
+  /* CHARTS */
+  .charts-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px;}
+  .chart-box{background:white;border:1px solid var(--border);border-radius:10px;padding:20px;}
+  .chart-box h3{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:16px;}
+  .chart-box canvas{max-height:220px;}
+  @media(max-width:700px){.charts-row{grid-template-columns:1fr;}.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* SECTION CARD */
+  .section-card{background:white;border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+  .section-card h2{font-size:14px;font-weight:700;padding:16px 20px;border-bottom:1px solid var(--border);background:#f8fafc;display:flex;align-items:center;gap:8px;}
+  .section-card h2 span.count{background:var(--blue);color:white;border-radius:20px;font-size:11px;padding:2px 8px;font-weight:600;}
+
+  /* TABLES */
+  .tbl-wrap{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  thead th{background:#f8fafc;padding:10px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;color:var(--mid);border-bottom:1px solid var(--border);cursor:pointer;white-space:nowrap;user-select:none;}
+  thead th:hover{background:#f0f4f8;color:var(--blue);}
+  thead th.sorted-asc::after{content:" ▲";}
+  thead th.sorted-desc::after{content:" ▼";}
+  tbody tr{border-bottom:1px solid var(--border);}
+  tbody tr:last-child{border-bottom:none;}
+  tbody tr:hover{background:#f8fafc;}
+  td{padding:10px 14px;vertical-align:middle;}
+  td.mono{font-family:"SF Mono","Fira Code",monospace;font-size:12px;}
+  td.campaign-name{font-size:11.5px;color:var(--slate);max-width:280px;}
+
+  /* PILLS */
+  .pill{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;}
+  .pill.green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);}
+  .pill.red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border);}
+  .pill.amber{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border);}
+  .pill.blue{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border);}
+  .pill.grey{background:#f1f5f9;color:var(--slate);border:1px solid var(--border);}
+
+  /* WoW COMPARISON */
+  .wow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:24px;}
+  .wow-card{background:white;border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+  .wow-card .metric{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--mid);margin-bottom:8px;}
+  .wow-card .row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);}
+  .wow-card .row:last-child{border-bottom:none;}
+  .wow-card .wk-label{font-size:11px;color:var(--mid);}
+  .wow-card .wk-val{font-size:14px;font-weight:700;color:var(--dark);}
+  .wow-card .change-row{margin-top:8px;padding-top:8px;border-top:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .wow-card .change-row .chg-label{font-size:11px;color:var(--mid);font-weight:600;}
+  .wow-card .change-row .chg-val{font-size:15px;font-weight:700;}
+
+  /* SUB-TABS */
+  .sub-tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border);background:white;padding:0 20px;overflow-x:auto;}
+  .sub-tab-btn{padding:10px 16px;font-size:12px;font-weight:600;color:var(--mid);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all 0.15s;}
+  .sub-tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
+  .sub-tab-content{display:none;}
+  .sub-tab-content.active{display:block;}
+
+  /* SEARCH */
+  .tbl-controls{padding:12px 20px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+  .search-box{padding:7px 12px;border:1px solid var(--border);border-radius:6px;font-size:12px;outline:none;width:220px;}
+  .search-box:focus{border-color:var(--blue);}
+
+  /* FOOTER */
+  .footer{text-align:center;padding:20px;font-size:11px;color:var(--mid);}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>&#x1F4CA; Sproutbrite &mdash; PPC Dashboard</h1>
+      <div class="period" id="headerPeriod">Week 19 &nbsp;|&nbsp; May 4&ndash;10, 2026 &nbsp;&nbsp;&bull;&nbsp;&nbsp; Week-over-Week vs W18 (Apr 27&ndash;May 3)</div>
+    </div>
+    <div class="header-badge" id="headerBadge">Generated May 12, 2026</div>
+  </div>
+  <div class="week-switcher">
+    <span>VIEW WEEK:</span>
+    <button class="week-btn" id="btn-w18" onclick="switchWeek('w18')">W18</button>
+    <button class="week-btn active" id="btn-w19" onclick="switchWeek('w19')">W19</button>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="switchTab('wow')">WoW Analysis</button>
+  <button class="tab-btn" onclick="switchTab('sku')">SKU Performance</button>
+  <button class="tab-btn" onclick="switchTab('actions')">Campaign Actions</button>
+  <button class="tab-btn" onclick="switchTab('terms')">Search Terms</button>
+</div>
+
+<!-- ===================== OVERVIEW ===================== -->
+<div id="tab-overview" class="tab-content active">
+  <div class="kpi-grid" id="kpiGrid"></div>
+  <div class="charts-row">
+    <div class="chart-box"><h3 id="chartSalesTitle">Sales &amp; Gross Profit</h3><canvas id="chartSalesGP"></canvas></div>
+    <div class="chart-box"><h3 id="chartSpendTitle">Spend vs Gross Profit</h3><canvas id="chartSpendGP"></canvas></div>
+  </div>
+  <div class="section-card">
+    <h2 id="top5Title">Top 5 SKUs (by Gross Profit)</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>SKU</th><th>Units</th><th>Sales</th><th>Ad Spend</th><th>Gross Profit</th><th>Margin</th><th>Real ACOS</th></tr></thead>
+        <tbody id="top5Body"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="section-card">
+    <h2 id="bot5Title">Bottom 5 SKUs (by Gross Profit)</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>SKU</th><th>Units</th><th>Sales</th><th>Ad Spend</th><th>Gross Profit</th><th>Margin</th><th>Real ACOS</th></tr></thead>
+        <tbody id="bot5Body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== WoW ANALYSIS ===================== -->
+<div id="tab-wow" class="tab-content">
+  <div class="wow-grid" id="wowGrid"></div>
+  <div class="section-card">
+    <h2>Top 5 GP Improvers &#x25B2; <span class="count" id="improvLabel">W18</span></h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th onclick="sortTable(this)">SKU</th>
+          <th onclick="sortTable(this)" id="hGPPrev">GP Prev</th>
+          <th onclick="sortTable(this)" id="hGPCurr">GP Curr</th>
+          <th onclick="sortTable(this)">GP Change</th>
+          <th onclick="sortTable(this)" id="hMPrev">Margin Prev</th>
+          <th onclick="sortTable(this)" id="hMCurr">Margin Curr</th>
+          <th onclick="sortTable(this)" id="hAPrev">ACOS Prev</th>
+          <th onclick="sortTable(this)" id="hACurr">ACOS Curr</th>
+        </tr></thead>
+        <tbody id="tblImprovers"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="section-card">
+    <h2>Top 5 GP Decliners &#x25BC; <span class="count" id="declLabel">W18</span></h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th onclick="sortTable(this)">SKU</th>
+          <th onclick="sortTable(this)">GP Prev</th>
+          <th onclick="sortTable(this)">GP Curr</th>
+          <th onclick="sortTable(this)">GP Change</th>
+          <th onclick="sortTable(this)">Margin Prev</th>
+          <th onclick="sortTable(this)">Margin Curr</th>
+          <th onclick="sortTable(this)">ACOS Prev</th>
+          <th onclick="sortTable(this)">ACOS Curr</th>
+        </tr></thead>
+        <tbody id="tblDecliners"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="section-card">
+    <h2>Full SKU WoW Table <span class="count" id="skuCount">—</span></h2>
+    <div class="tbl-controls">
+      <input class="search-box" type="text" placeholder="Filter by SKU..." onkeyup="filterSkuTable(this.value)">
+    </div>
+    <div class="tbl-wrap">
+      <table id="tblAllSku">
+        <thead><tr>
+          <th onclick="sortTable(this)">SKU</th>
+          <th onclick="sortTable(this)">Sales Prev</th>
+          <th onclick="sortTable(this)">Sales Curr</th>
+          <th onclick="sortTable(this)">GP Prev</th>
+          <th onclick="sortTable(this)">GP Curr</th>
+          <th onclick="sortTable(this)">GP Change</th>
+          <th onclick="sortTable(this)">Margin Prev</th>
+          <th onclick="sortTable(this)">Margin Curr</th>
+          <th onclick="sortTable(this)">ACOS Prev</th>
+          <th onclick="sortTable(this)">ACOS Curr</th>
+          <th onclick="sortTable(this)">Units Prev</th>
+          <th onclick="sortTable(this)">Units Curr</th>
+        </tr></thead>
+        <tbody id="skuWowBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SKU PERFORMANCE ===================== -->
+<div id="tab-sku" class="tab-content">
+  <div class="charts-row">
+    <div class="chart-box" style="grid-column:1/-1;">
+      <h3 id="top5ChartTitle">Top 5 SKUs — Gross Profit (Bar)</h3>
+      <canvas id="chartTop5" style="max-height:250px;"></canvas>
+    </div>
+  </div>
+  <div class="section-card">
+    <h2>All SKUs Performance <span class="count" id="skuPerfCount">—</span></h2>
+    <div class="tbl-controls">
+      <input class="search-box" type="text" placeholder="Filter by SKU..." onkeyup="filterSkuPerfTable(this.value)">
+    </div>
+    <div class="tbl-wrap">
+      <table id="tblSkuPerf">
+        <thead><tr>
+          <th onclick="sortTable(this)">SKU</th>
+          <th onclick="sortTable(this)">Units</th>
+          <th onclick="sortTable(this)">Sales</th>
+          <th onclick="sortTable(this)">Ad Spend</th>
+          <th onclick="sortTable(this)">Gross Profit</th>
+          <th onclick="sortTable(this)">Margin</th>
+          <th onclick="sortTable(this)">Real ACOS</th>
+          <th onclick="sortTable(this)">GP Change</th>
+        </tr></thead>
+        <tbody id="skuPerfBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CAMPAIGN ACTIONS ===================== -->
+<div id="tab-actions" class="tab-content">
+  <!-- W18 ACTIONS -->
+  <div id="actions-w18" style="display:none;">
+    <div class="section-card">
+      <div class="sub-tab-bar">
+        <button class="sub-tab-btn active" onclick="switchSubTab('w18-bidup')">&#x2B06; Bid Increases (5)</button>
+        <button class="sub-tab-btn" onclick="switchSubTab('w18-biddown')">&#x2B07; Bid Reductions (5)</button>
+        <button class="sub-tab-btn" onclick="switchSubTab('w18-negs')">&#x1F6AB; Negatives (4)</button>
+        <button class="sub-tab-btn" onclick="switchSubTab('w18-grads')">&#x1F393; Graduations (10)</button>
+      </div>
+      <div id="sub-w18-bidup" class="sub-tab-content active"><div class="tbl-wrap"><table>
+        <thead><tr><th>Target</th><th>Campaign</th><th>Current Bid</th><th>New Bid</th><th>Orders</th><th>ACOS</th><th>Spend</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill blue">posters</span></td><td class="campaign-name">SB-All - Catch All - SP - Broad - Posters Keywords - Seeding</td><td>$0.36</td><td><strong style="color:var(--green)">$0.66</strong></td><td><span class="pill green">11</span></td><td>32.1%</td><td>$51.11</td></tr>
+          <tr><td><span class="pill blue">math poster</span></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Phrase - Top SQP 1</td><td>$0.91</td><td><strong style="color:var(--green)">$1.33</strong></td><td><span class="pill green">8</span></td><td>38.5%</td><td>$44.83</td></tr>
+          <tr><td><span class="pill blue">posters for classroom</span></td><td class="campaign-name">SP - NB Broad - Top SQP 1 - Better Together Poster Set - Sproutbrite (Posters)</td><td>$0.55</td><td><strong style="color:var(--green)">$0.67</strong></td><td><span class="pill green">8</span></td><td>5.2%</td><td>$6.60</td></tr>
+          <tr><td><span class="pill blue">sproutbrite</span></td><td class="campaign-name">SB-All - Low Hanging Fruit - All Match Types - Low Bid - High TOS150%</td><td>$0.85</td><td><strong style="color:var(--green)">$1.58</strong></td><td><span class="pill green">6</span></td><td>14.0%</td><td>$11.04</td></tr>
+          <tr><td><span class="pill blue">science bulletin board</span></td><td class="campaign-name">SB-124 - Growth Mindset - SP - Manual - Exact + Broad - Generic KWs</td><td>$0.36</td><td><strong style="color:var(--green)">$0.58</strong></td><td><span class="pill green">3</span></td><td>2.0%</td><td>$0.85</td></tr>
+        </tbody>
+      </table></div></div>
+      <div id="sub-w18-biddown" class="sub-tab-content"><div class="tbl-wrap"><table>
+        <thead><tr><th>Target</th><th>Campaign</th><th>Current Bid</th><th>New Bid</th><th>ACOS</th><th>Spend</th><th>Orders</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill amber">loose-match</span></td><td class="campaign-name">SB-039,008,028 - Empowerment Posters - Parent - SP - Auto - Catch All</td><td>$0.55</td><td><strong style="color:var(--red)">$0.41</strong></td><td><span class="pill red">73.4%</span></td><td>$221.42</td><td>22</td></tr>
+          <tr><td><span class="pill amber">math posters</span></td><td class="campaign-name">SB-Math Posters SP - PAT+Branded + Exact + Phrase + Broad - Generic KWs (Highly Broad)</td><td>$1.76</td><td><strong style="color:var(--red)">$1.32</strong></td><td><span class="pill red">102.8%</span></td><td>$126.18</td><td>9</td></tr>
+          <tr><td><span class="pill amber">loose-match</span></td><td class="campaign-name">SB-All - SP - Primary Auto 2 - Catch All - Mod Bid</td><td>$0.41</td><td><strong style="color:var(--red)">$0.31</strong></td><td><span class="pill red">190.4%</span></td><td>$105.64</td><td>4</td></tr>
+          <tr><td><span class="pill amber">math posters</span></td><td class="campaign-name">SB-All - Low Hanging Fruit - All Match Types - Low Bid - High TOS150%</td><td>$0.75</td><td><strong style="color:var(--red)">$0.56</strong></td><td><span class="pill red">173.3%</span></td><td>$48.34</td><td>2</td></tr>
+          <tr><td><span class="pill amber">loose-match</span></td><td class="campaign-name">SB-021+124+040 - Growth Posters - SP - Auto - Close/Loose</td><td>$0.46</td><td><strong style="color:var(--red)">$0.34</strong></td><td><span class="pill red">114.2%</span></td><td>$31.06</td><td>2</td></tr>
+        </tbody>
+      </table></div></div>
+      <div id="sub-w18-negs" class="sub-tab-content"><div class="tbl-wrap"><table>
+        <thead><tr><th>Search Term</th><th>Campaign</th><th>Match Type</th><th>Spend</th><th>Clicks</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill red">learning posters for toddlers 1-3</span></td><td class="campaign-name">SB-100 New - ABC Posters 18 set - SP - Exact - Top KWS</td><td><span class="pill grey">EXACT</span></td><td>$28.15</td><td>26</td></tr>
+          <tr><td><span class="pill red">math posters for middle school</span></td><td class="campaign-name">SB-Math Posters SP - PAT+Branded + Exact + Phrase + Broad - Generic KWs (Highly Broad)</td><td><span class="pill grey">PHRASE</span></td><td>$23.22</td><td>14</td></tr>
+          <tr><td><span class="pill red">bulletin board decorations</span></td><td class="campaign-name">SB-124 - Mindset Poster / Motivational - SP - Auto - Amz Business targeting</td><td><span class="pill grey">AUTO</span></td><td>$17.61</td><td>9</td></tr>
+          <tr><td><span class="pill red">math posters for high school</span></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Phrase - Top SQP 1</td><td><span class="pill grey">PHRASE</span></td><td>$12.52</td><td>11</td></tr>
+        </tbody>
+      </table></div></div>
+      <div id="sub-w18-grads" class="sub-tab-content"><div class="tbl-wrap"><table>
+        <thead><tr><th>Search Term</th><th>Source Campaign</th><th>Match</th><th>Orders</th><th>ACOS</th><th>Destination Campaign</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill green">career day decorations</span></td><td class="campaign-name">SB-056 - Welcome Poster Set - Legacy Auto - Substitute</td><td><span class="pill grey">Auto</span></td><td><span class="pill green">6</span></td><td>3.2%</td><td class="campaign-name">SB-011 | Welcome Banner - SP - Exact</td></tr>
+          <tr><td><span class="pill green">classroom banner poster</span></td><td class="campaign-name">SP - NB Broad - Top SQP 1 - Better Together Poster Set - Sproutbrite (Posters)</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">6</span></td><td>1.6%</td><td class="campaign-name">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td></tr>
+          <tr><td><span class="pill green">classroom rules poster middle school</span></td><td class="campaign-name">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">6</span></td><td>1.3%</td><td class="campaign-name">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td></tr>
+          <tr><td><span class="pill green">classroom posters</span></td><td class="campaign-name">SB-010 - School Poster - SP - Broad - Top SQP 1</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">5</span></td><td>2.8%</td><td class="campaign-name">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td></tr>
+          <tr><td><span class="pill green">english posters for classroom</span></td><td class="campaign-name">SB-124 - Mindset Poster / Motivational - SP - Auto - Amz Business targeting</td><td><span class="pill grey">Auto</span></td><td><span class="pill green">4</span></td><td>6.6%</td><td class="campaign-name">SB-049,51,52 - Reading Posters - SP - Exact - MKW</td></tr>
+          <tr><td><span class="pill green">classroom rules</span></td><td class="campaign-name">SB-126 - Essential Math Posters - SP - Auto - Amz Business targeting</td><td><span class="pill grey">Auto</span></td><td><span class="pill green">4</span></td><td>3.4%</td><td class="campaign-name">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td></tr>
+          <tr><td><span class="pill green">sproutbrite 13.5 x 39 pemdas</span></td><td class="campaign-name">SB-All - Low Hanging Fruit - All Match Types - Low Bid - High TOS150%</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">4</span></td><td>0.9%</td><td class="campaign-name">SB-All - Branded Exact - General Posters</td></tr>
+          <tr><td><span class="pill green">signs math class</span></td><td class="campaign-name">SB-105 - Multiplication Division chart - SP - Auto - Amz Business targeting</td><td><span class="pill grey">Auto</span></td><td><span class="pill green">4</span></td><td>1.9%</td><td class="campaign-name">SB-126 - Essential Math Posters - SP - Manual Exact - Amz Business targeting</td></tr>
+          <tr><td><span class="pill green">daycare center poster</span></td><td class="campaign-name">SB-All - Catch All - Auto - Mod Bids - Core</td><td><span class="pill grey">Auto</span></td><td><span class="pill green">4</span></td><td>1.1%</td><td class="campaign-name">SB-011 | Welcome Banner - SP - Exact</td></tr>
+          <tr><td><span class="pill green">mental health awareness banner</span></td><td class="campaign-name">General - SB-033 | Classroom Banners Legacy Auto</td><td><span class="pill grey">Auto</span></td><td><span class="pill green">3</span></td><td>3.6%</td><td class="campaign-name">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td></tr>
+        </tbody>
+      </table></div></div>
+    </div>
+  </div>
+
+  <!-- W19 ACTIONS -->
+  <div id="actions-w19" style="display:block;">
+    <div class="section-card">
+      <div class="sub-tab-bar">
+        <button class="sub-tab-btn active" onclick="switchSubTab('w19-bidup')">&#x2B06; Bid Increases (9)</button>
+        <button class="sub-tab-btn" onclick="switchSubTab('w19-biddown')">&#x2B07; Bid Reductions (12)</button>
+        <button class="sub-tab-btn" onclick="switchSubTab('w19-negs')">&#x1F6AB; Negatives (5)</button>
+        <button class="sub-tab-btn" onclick="switchSubTab('w19-grads')">&#x1F393; Graduations (9)</button>
+      </div>
+      <div id="sub-w19-bidup" class="sub-tab-content active"><div class="tbl-wrap"><table>
+        <thead><tr><th>Target</th><th>Campaign</th><th>Current Bid</th><th>New Bid</th><th>Orders</th><th>ACOS</th><th>Spend</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill blue">middle school math posters</span></td><td class="campaign-name">SB-Math Posters SP - PAT+Branded + Exact + Phrase + Broad - Generic KWs</td><td>$0.98</td><td><strong style="color:var(--green)">$1.83</strong></td><td><span class="pill green">7</span></td><td>8.3%</td><td>$7.99</td></tr>
+          <tr><td><span class="pill blue">sproutbrite educational posters</span></td><td class="campaign-name">SB-Classroom Posters+Amazing things banner - SP - Manual - Exact + Phrase</td><td>$2.52</td><td><strong style="color:var(--green)">$2.75</strong></td><td><span class="pill green">7</span></td><td>4.0%</td><td>$4.34</td></tr>
+          <tr><td><span class="pill blue">loose-match</span></td><td class="campaign-name">Catch All - Purchased Audience Targeting - Low Bid Campaign</td><td>$0.31</td><td><strong style="color:var(--green)">$0.48</strong></td><td><span class="pill green">6</span></td><td>21.4%</td><td>$18.30</td></tr>
+          <tr><td><span class="pill blue">math posters</span></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Broad - Top SQP 1</td><td>$0.75</td><td><strong style="color:var(--green)">$1.50</strong></td><td><span class="pill green">5</span></td><td>21.9%</td><td>$15.25</td></tr>
+          <tr><td><span class="pill blue">sproutbrite</span></td><td class="campaign-name">SB-All - Branded KWs - Sproutebrite</td><td>$0.32</td><td><strong style="color:var(--green)">$0.64</strong></td><td><span class="pill green">5</span></td><td>6.2%</td><td>$4.12</td></tr>
+          <tr><td><span class="pill blue">close-match</span></td><td class="campaign-name">SB-021+124+040 - Growth Posters - SP - Auto - Close/Loose</td><td>$0.57</td><td><strong style="color:var(--green)">$0.74</strong></td><td><span class="pill green">4</span></td><td>27.9%</td><td>$17.07</td></tr>
+          <tr><td><span class="pill blue">substitutes</span></td><td class="campaign-name">SB-All - SP - Primary Auto 2 - Catch All - Mod Bid</td><td>$0.21</td><td><strong style="color:var(--green)">$0.26</strong></td><td><span class="pill green">4</span></td><td>3.5%</td><td>$1.84</td></tr>
+          <tr><td><span class="pill blue">posters</span></td><td class="campaign-name">SBI-108-109-134New - Reading Comprehension Poster - SP - Auto</td><td>$0.30</td><td><strong style="color:var(--green)">$0.60</strong></td><td><span class="pill green">3</span></td><td>26.5%</td><td>$13.23</td></tr>
+          <tr><td><span class="pill blue">educational math posters</span></td><td class="campaign-name">SB-Math Posters SP - PAT+Branded + Exact + Phrase + Broad - Generic KWs</td><td>$1.24</td><td><strong style="color:var(--green)">$1.86</strong></td><td><span class="pill green">3</span></td><td>17.5%</td><td>$7.34</td></tr>
+        </tbody>
+      </table></div></div>
+      <div id="sub-w19-biddown" class="sub-tab-content"><div class="tbl-wrap"><table>
+        <thead><tr><th>Target</th><th>Campaign</th><th>Current Bid</th><th>New Bid</th><th>ACOS</th><th>Spend</th><th>Orders</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill amber">loose-match</span></td><td class="campaign-name">SB-All Primary Catch All - Loose Match Campaign (Highest Spender)</td><td>$0.41</td><td><strong style="color:var(--red)">$0.31</strong></td><td><span class="pill red">124.6%</span></td><td>$314.07</td><td>17</td></tr>
+          <tr><td><span class="pill amber">loose-match</span></td><td class="campaign-name">SB-039,008,028 - Empowerment Posters - Parent - SP - Auto - Catch All</td><td>$0.55</td><td><strong style="color:var(--red)">$0.41</strong></td><td><span class="pill red">73.0%</span></td><td>$185.29</td><td>17</td></tr>
+          <tr><td><span class="pill amber">loose-match</span></td><td class="campaign-name">SB-098 - Order of Operations Posters - SP - Auto - Amz Business targeting</td><td>$1.00</td><td><strong style="color:var(--red)">$0.75</strong></td><td><span class="pill red">143.1%</span></td><td>$114.80</td><td>6</td></tr>
+          <tr><td><span class="pill amber">posters</span></td><td class="campaign-name">SB-All - Catch All - SP - Broad - Posters Keywords - Seeding</td><td>$0.55</td><td><strong style="color:var(--red)">$0.41</strong></td><td><span class="pill red">88.5%</span></td><td>$98.78</td><td>8</td></tr>
+          <tr><td><span class="pill amber">math posters</span></td><td class="campaign-name">SB-125 | SP-Exact-SKAG | geometry posters</td><td>$1.50</td><td><strong style="color:var(--red)">$1.12</strong></td><td><span class="pill red">91.7%</span></td><td>$76.79</td><td>2</td></tr>
+          <tr><td><span class="pill amber">posters</span></td><td class="campaign-name">SB-035 - Inspirational Posters - Manual - SP - Top KWs</td><td>$0.85</td><td><strong style="color:var(--red)">$0.64</strong></td><td><span class="pill red">100.2%</span></td><td>$69.49</td><td>5</td></tr>
+          <tr><td><span class="pill amber">loose-match</span></td><td class="campaign-name">General - SB-033 | Classroom Banners Legacy Auto</td><td>$0.75</td><td><strong style="color:var(--red)">$0.56</strong></td><td><span class="pill red">77.5%</span></td><td>$53.63</td><td>5</td></tr>
+          <tr><td><span class="pill amber">math poster</span></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Phrase - Top SQP 1</td><td>$1.11</td><td><strong style="color:var(--red)">$0.83</strong></td><td><span class="pill red">125.6%</span></td><td>$52.28</td><td>3</td></tr>
+          <tr><td><span class="pill amber">math posters</span></td><td class="campaign-name">SB-105 - Divisibility Rules Set - Phrase - Organic Ranking</td><td>$0.93</td><td><strong style="color:var(--red)">$0.70</strong></td><td><span class="pill red">80.2%</span></td><td>$42.31</td><td>4</td></tr>
+          <tr><td><span class="pill amber">math posters for middle school</span></td><td class="campaign-name">SB-Maths - All Maths Posters Keywords - Exact - Main Campaign</td><td>$1.00</td><td><strong style="color:var(--red)">$0.75</strong></td><td><span class="pill red">102.3%</span></td><td>$41.38</td><td>3</td></tr>
+          <tr><td><span class="pill amber">posters for classroom</span></td><td class="campaign-name">SP - NB Broad - Top SQP 1 - Better Together Poster Set - Sproutbrite</td><td>$1.00</td><td><strong style="color:var(--red)">$0.75</strong></td><td><span class="pill red">87.2%</span></td><td>$37.00</td><td>3</td></tr>
+          <tr><td><span class="pill amber">posters</span></td><td class="campaign-name">SB-124 - Growth Posters - SP - Broad - Seeding - Low Bid</td><td>$0.25</td><td><strong style="color:var(--red)">$0.19</strong></td><td><span class="pill red">134.8%</span></td><td>$35.90</td><td>2</td></tr>
+        </tbody>
+      </table></div></div>
+      <div id="sub-w19-negs" class="sub-tab-content"><div class="tbl-wrap"><table>
+        <thead><tr><th>Search Term</th><th>Campaign</th><th>Match Type</th><th>Spend</th><th>Clicks</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill red">math posters for high school</span></td><td class="campaign-name">SB-All - Maths Posters - SP - Exact - math posters for high school</td><td><span class="pill grey">EXACT</span></td><td>$29.72</td><td>27</td></tr>
+          <tr><td><span class="pill red">motivational posters</span></td><td class="campaign-name">SB-032 - Motivational Posters - SP - Exact - Branded</td><td><span class="pill grey">EXACT</span></td><td>$24.12</td><td>16</td></tr>
+          <tr><td><span class="pill red">math posters for elementary school</span></td><td class="campaign-name">SB-125 | SP-Exact-SKAG | geometry posters</td><td><span class="pill grey">EXACT</span></td><td>$13.72</td><td>9</td></tr>
+          <tr><td><span class="pill red">math posters for middle school</span></td><td class="campaign-name">SB-105 - Divisibility Rules Set - Phrase - Organic Ranking</td><td><span class="pill grey">PHRASE</span></td><td>$13.33</td><td>12</td></tr>
+          <tr><td><span class="pill red">math posters for elementary school</span></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Phrase - Top SQP 1</td><td><span class="pill grey">PHRASE</span></td><td>$13.13</td><td>10</td></tr>
+        </tbody>
+      </table></div></div>
+      <div id="sub-w19-grads" class="sub-tab-content"><div class="tbl-wrap"><table>
+        <thead><tr><th>Search Term</th><th>Source Campaign</th><th>Match</th><th>Orders</th><th>ACOS</th><th>Destination Campaign</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill green">math rules poster</span></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Broad - Top SQP 1</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">3</span></td><td>1.8%</td><td class="campaign-name">SB-Math Posters SP - Exact Match Campaign</td></tr>
+          <tr><td><span class="pill green">motivational posters for kids</span></td><td class="campaign-name">SP - NB Broad - Top SQP 1 - Better Together Poster Set - Sproutbrite</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">3</span></td><td>4.2%</td><td class="campaign-name">SB-All - Branded Exact - General Posters</td></tr>
+          <tr><td><span class="pill green">sproutbrite 13.5"x39" educational math posters 2 pack</span></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Broad - Top SQP 1</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">3</span></td><td>1.7%</td><td class="campaign-name">SB-All - Branded Exact - General Posters</td></tr>
+          <tr><td><span class="pill green">sproutbrite 6 music posters for classroom</span></td><td class="campaign-name">SB-All - Branded KWs - Sproutebrite</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">3</span></td><td>2.4%</td><td class="campaign-name">SB-All - Branded Exact - General Posters</td></tr>
+          <tr><td><span class="pill green">5th grade posters for classroom</span></td><td class="campaign-name">SP - NB Broad - Top SQP 1 - High School Motivational</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">2</span></td><td>1.5%</td><td class="campaign-name">SB-049,51,52 - Reading Posters - SP - Exact - MKW</td></tr>
+          <tr><td><span class="pill green">colorful classroom decor for kindergarten</span></td><td class="campaign-name">SB-039 - Empowerment Posters (Future of World) - SP - Broad</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">2</span></td><td>4.0%</td><td class="campaign-name">SB-All - Broad Match - Classroom Decor</td></tr>
+          <tr><td><span class="pill green">health posters</span></td><td class="campaign-name">SB-124 - Growth Posters - SP - Broad - Seeding - Low Bid</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">2</span></td><td>4.1%</td><td class="campaign-name">SB-124 - Growth Mindset - SP - Manual - Exact</td></tr>
+          <tr><td><span class="pill green">middle school math posters</span></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Broad - Top SQP 1</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">2</span></td><td>2.4%</td><td class="campaign-name">SB-Math Posters SP - Exact Match Campaign</td></tr>
+          <tr><td><span class="pill green">sproutbrite 13.5" x 39" educational place value poster</span></td><td class="campaign-name">SB-All - Branded KWs - Sproutebrite</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">2</span></td><td>2.1%</td><td class="campaign-name">SB-All - Branded Exact - General Posters</td></tr>
+        </tbody>
+      </table></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SEARCH TERMS ===================== -->
+<div id="tab-terms" class="tab-content">
+  <!-- W18 TERMS -->
+  <div id="terms-w18" style="display:none;">
+    <div class="section-card">
+      <h2>&#x2B50; Best Converting Search Terms &mdash; W18</h2>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Search Term</th><th>Campaign</th><th>Match</th><th>Orders</th><th>Spend</th><th>ACOS</th></tr></thead>
+        <tbody>
+          <tr><td><strong>career day decorations</strong></td><td class="campaign-name">SB-056 - Welcome Poster Set - Legacy Auto - Substitute</td><td><span class="pill grey">Auto</span></td><td><span class="pill green">6</span></td><td>$2.57</td><td><span class="pill green">3.2%</span></td></tr>
+          <tr><td><strong>classroom rules poster middle school</strong></td><td class="campaign-name">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">6</span></td><td>$1.08</td><td><span class="pill green">1.3%</span></td></tr>
+          <tr><td><strong>classroom banner poster</strong></td><td class="campaign-name">SP - NB Broad - Top SQP 1 - Better Together Poster Set - Sproutbrite</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">6</span></td><td>$1.32</td><td><span class="pill green">1.6%</span></td></tr>
+          <tr><td><strong>classroom posters</strong></td><td class="campaign-name">SB-010 - School Poster - SP - Broad - Top SQP 1</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">5</span></td><td>$2.04</td><td><span class="pill green">2.8%</span></td></tr>
+          <tr><td><strong>math posters for middle school</strong></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Phrase - Top SQP 1</td><td><span class="pill grey">Phrase</span></td><td><span class="pill green">5</span></td><td>$9.96</td><td><span class="pill amber">14.5%</span></td></tr>
+          <tr><td><strong>science posters</strong></td><td class="campaign-name">SB-117 | Science Bulletin Board - SP - Manual - Exact</td><td><span class="pill grey">Phrase</span></td><td><span class="pill green">5</span></td><td>$7.08</td><td><span class="pill amber">10.5%</span></td></tr>
+          <tr><td><strong>daycare center poster</strong></td><td class="campaign-name">SB-All - Catch All - Auto - Mod Bids - Core</td><td><span class="pill grey">Auto</span></td><td><span class="pill green">4</span></td><td>$0.61</td><td><span class="pill green">1.1%</span></td></tr>
+          <tr><td><strong>math posters</strong></td><td class="campaign-name">SB-113 - Fraction Conversion Poster - SP - Broad - Top SQP 1</td><td><span class="pill grey">Broad</span></td><td><span class="pill green">4</span></td><td>$2.90</td><td><span class="pill green">5.2%</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="section-card">
+      <h2>&#x1F6A8; Spend Wasters &mdash; W18 (No Conversions)</h2>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Search Term</th><th>Campaign</th><th>Spend</th><th>Clicks</th></tr></thead>
+        <tbody>
+          <tr><td><strong>learning posters for toddlers 1-3</strong></td><td class="campaign-name">SB-100 New - ABC Posters 18 set - SP - Exact - Top KWS</td><td><span class="pill red">$28.15</span></td><td>26</td></tr>
+          <tr><td><strong>math posters for middle school</strong></td><td class="campaign-name">SB-Math Posters SP - PAT+Branded + Exact + Phrase + Broad - Generic KWs</td><td><span class="pill red">$23.22</span></td><td>14</td></tr>
+          <tr><td><strong>bulletin board decorations</strong></td><td class="campaign-name">SB-124 - Mindset Poster / Motivational - SP - Auto - Amz Business targeting</td><td><span class="pill red">$17.61</span></td><td>9</td></tr>
+          <tr><td><strong>math posters for high school</strong></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Phrase - Top SQP 1</td><td><span class="pill red">$12.52</span></td><td>11</td></tr>
+          <tr><td><strong>classroom decorations elementary</strong></td><td class="campaign-name">SB-029 | Empowerment Poster - Be Reason for Someone's Smile - Manual - Phrase</td><td><span class="pill red">$9.92</span></td><td>10</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <!-- W19 TERMS -->
+  <div id="terms-w19" style="display:block;">
+    <div class="section-card">
+      <h2>&#x2B50; Best Converting Search Terms &mdash; W19</h2>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Search Term</th><th>Campaign</th><th>Match</th><th>Orders</th><th>Spend</th><th>ACOS</th></tr></thead>
+        <tbody>
+          <tr><td><strong>sproutbrite 6 pack high school motivational posters</strong></td><td class="campaign-name">SB-All - Branded KWs - Sproutebrite</td><td><span class="pill grey">Exact</span></td><td><span class="pill green">7</span></td><td>$0.53</td><td><span class="pill green">0.6%</span></td></tr>
+          <tr><td><strong>middle school math posters for classroom</strong></td><td class="campaign-name">SB-Math Posters SP - PAT+Branded + Exact + Phrase + Broad - Generic KWs</td><td><span class="pill grey">Phrase</span></td><td><span class="pill green">7</span></td><td>$1.08</td><td><span class="pill green">1.1%</span></td></tr>
+          <tr><td><strong>sproutbrite educational posters-team</strong></td><td class="campaign-name">SB-Classroom Posters+Amazing things banner - SP - Manual - Exact + Phrase</td><td><span class="pill grey">Phrase</span></td><td><span class="pill green">6</span></td><td>$3.66</td><td><span class="pill green">3.8%</span></td></tr>
+          <tr><td><strong>school classroom decorations</strong></td><td class="campaign-name">SB-032 - Classroom Posters - SP - Manual - Generic KWs - Legacy Campaigns</td><td><span class="pill grey">Exact</span></td><td><span class="pill green">6</span></td><td>$0.00</td><td><span class="pill green">0.0%</span></td></tr>
+          <tr><td><strong>math posters high school</strong></td><td class="campaign-name">SB-All - Maths Posters - SP - Exact - math posters for high school</td><td><span class="pill grey">Exact</span></td><td><span class="pill green">5</span></td><td>$4.95</td><td><span class="pill green">7.5%</span></td></tr>
+          <tr><td><strong>geometry cheat sheet laminated</strong></td><td class="campaign-name">SB-125 | SP-Exact-SKAG | geometry posters</td><td><span class="pill grey">Exact</span></td><td><span class="pill green">4</span></td><td>$1.86</td><td><span class="pill green">3.3%</span></td></tr>
+          <tr><td><strong>math anchor charts 5th grade</strong></td><td class="campaign-name">SB-All - Maths Posters - SP - Exact - Main Campaign</td><td><span class="pill grey">Exact</span></td><td><span class="pill green">4</span></td><td>$1.52</td><td><span class="pill green">2.8%</span></td></tr>
+          <tr><td><strong>math posters</strong></td><td class="campaign-name">SB-Math Posters SP - PAT+Branded + Exact + Phrase + Broad</td><td><span class="pill grey">Phrase</span></td><td><span class="pill green">4</span></td><td>$12.12</td><td><span class="pill amber">21.7%</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="section-card">
+      <h2>&#x1F6A8; Spend Wasters &mdash; W19 (No Conversions)</h2>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Search Term</th><th>Campaign</th><th>Spend</th><th>Clicks</th></tr></thead>
+        <tbody>
+          <tr><td><strong>math posters for high school</strong></td><td class="campaign-name">SB-All - Maths Posters - SP - Exact - math posters for high school</td><td><span class="pill red">$29.72</span></td><td>27</td></tr>
+          <tr><td><strong>motivational posters</strong></td><td class="campaign-name">SB-032 - Motivational Posters - SP - Exact - Branded</td><td><span class="pill red">$24.12</span></td><td>16</td></tr>
+          <tr><td><strong>math posters for elementary school</strong></td><td class="campaign-name">SB-125 | SP-Exact-SKAG | geometry posters</td><td><span class="pill red">$13.72</span></td><td>9</td></tr>
+          <tr><td><strong>math posters for middle school</strong></td><td class="campaign-name">SB-105 - Divisibility Rules Set - Phrase - Organic Ranking</td><td><span class="pill red">$13.33</span></td><td>12</td></tr>
+          <tr><td><strong>math posters for elementary school</strong></td><td class="campaign-name">SB-112 - Fraction Operations Poster - SP - Phrase - Top SQP 1</td><td><span class="pill red">$13.13</span></td><td>10</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer" id="footerText">Sproutbrite PPC Dashboard &mdash; Week 19 &mdash; May 4&ndash;10, 2026</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const skuDataW18 = [{"sku":"SB-124","sprev":654.83,"scurr":1240.85,"gprev":58.25,"gcurr":238.99,"gc":180.74,"mprev":8.9,"mcurr":19.26,"aprev":35.13,"acurr":22.14,"uprev":48,"ucurr":94,"adcurr":274.72},{"sku":"SB-105","sprev":309.07,"scurr":573.5,"gprev":32.56,"gcurr":166.69,"gc":134.13,"mprev":10.53,"mcurr":29.07,"aprev":31.66,"acurr":11.07,"uprev":23,"ucurr":43,"adcurr":63.48},{"sku":"SB-114","sprev":351.1,"scurr":505.15,"gprev":55.01,"gcurr":155.01,"gc":100.0,"mprev":15.67,"mcurr":30.69,"aprev":22.78,"acurr":12.43,"uprev":26,"ucurr":38,"adcurr":62.8},{"sku":"SBI-104","sprev":66.95,"scurr":274.8,"gprev":18.26,"gcurr":112.01,"gc":93.75,"mprev":27.27,"mcurr":40.76,"aprev":18.88,"acurr":5.96,"uprev":5,"ucurr":20,"adcurr":16.38},{"sku":"SB-098","sprev":585.85,"scurr":800.72,"gprev":90.67,"gcurr":181.43,"gc":90.76,"mprev":15.48,"mcurr":22.66,"aprev":23.06,"acurr":19.37,"uprev":43,"ucurr":59,"adcurr":155.09},{"sku":"SBI-103","sprev":189.0,"scurr":320.05,"gprev":9.52,"gcurr":95.58,"gc":86.06,"mprev":5.04,"mcurr":29.86,"aprev":21.51,"acurr":14.19,"uprev":12,"ucurr":21,"adcurr":45.4},{"sku":"SB-053","sprev":268.07,"scurr":205.9,"gprev":-34.86,"gcurr":45.93,"gc":80.79,"mprev":-13.0,"mcurr":22.31,"aprev":38.21,"acurr":14.6,"uprev":19,"ucurr":12,"adcurr":30.07},{"sku":"SB-023","sprev":113.0,"scurr":332.45,"gprev":58.02,"gcurr":129.48,"gc":71.46,"mprev":51.35,"mcurr":38.95,"aprev":1.48,"acurr":2.04,"uprev":6,"ucurr":17,"adcurr":6.77},{"sku":"SB-033","sprev":423.49,"scurr":456.43,"gprev":21.68,"gcurr":93.07,"gc":71.39,"mprev":5.12,"mcurr":20.39,"aprev":37.92,"acurr":25.28,"uprev":31,"ucurr":33,"adcurr":115.39},{"sku":"SB-049","sprev":122.75,"scurr":177.85,"gprev":-27.26,"gcurr":41.98,"gc":69.24,"mprev":-22.21,"mcurr":23.6,"aprev":65.87,"acurr":20.1,"uprev":9,"ucurr":13,"adcurr":35.75},{"sku":"SB-071","sprev":258.49,"scurr":328.25,"gprev":28.6,"gcurr":96.78,"gc":68.18,"mprev":11.06,"mcurr":29.48,"aprev":8.65,"acurr":5.49,"uprev":20,"ucurr":26,"adcurr":18.02},{"sku":"SB-056","sprev":399.65,"scurr":378.7,"gprev":33.06,"gcurr":92.61,"gc":59.55,"mprev":8.27,"mcurr":24.45,"aprev":24.92,"acurr":22.3,"uprev":29,"ucurr":28,"adcurr":84.44},{"sku":"SB-109u","sprev":504.6,"scurr":406.55,"gprev":99.55,"gcurr":148.92,"gc":49.37,"mprev":19.73,"mcurr":36.63,"aprev":18.09,"acurr":5.98,"uprev":37,"ucurr":28,"adcurr":24.31},{"sku":"SB-032","sprev":669.9,"scurr":717.75,"gprev":159.95,"gcurr":205.69,"gc":45.74,"mprev":23.88,"mcurr":28.66,"aprev":20.72,"acurr":20.48,"uprev":42,"ucurr":45,"adcurr":147.0},{"sku":"SBI-109","sprev":416.5,"scurr":551.98,"gprev":99.1,"gcurr":141.98,"gc":42.88,"mprev":23.79,"mcurr":25.72,"aprev":18.21,"acurr":10.29,"uprev":24,"ucurr":32,"adcurr":56.79},{"sku":"SB-118","sprev":27.9,"scurr":111.6,"gprev":8.42,"gcurr":50.45,"gc":42.03,"mprev":30.18,"mcurr":45.21,"aprev":15.77,"acurr":0.74,"uprev":2,"ucurr":8,"adcurr":0.83},{"sku":"NSB-098","sprev":55.24,"scurr":95.41,"gprev":-14.96,"gcurr":25.82,"gc":40.78,"mprev":-27.08,"mcurr":27.06,"aprev":72.27,"acurr":17.44,"uprev":4,"ucurr":7,"adcurr":16.64},{"sku":"SB-081","sprev":205.05,"scurr":226.77,"gprev":15.32,"gcurr":49.61,"gc":34.29,"mprev":7.47,"mcurr":21.88,"aprev":37.66,"acurr":12.38,"uprev":15,"ucurr":17,"adcurr":28.07},{"sku":"SB-090","sprev":13.95,"scurr":95.55,"gprev":-0.77,"gcurr":33.4,"gc":34.17,"mprev":-5.52,"mcurr":34.96,"aprev":51.47,"acurr":8.25,"uprev":1,"ucurr":7,"adcurr":7.88},{"sku":"SB-046","sprev":96.95,"scurr":124.15,"gprev":14.12,"gcurr":41.08,"gc":26.96,"mprev":14.56,"mcurr":33.09,"aprev":29.86,"acurr":12.41,"uprev":7,"ucurr":9,"adcurr":15.41},{"sku":"SB-058","sprev":13.95,"scurr":40.45,"gprev":-13.46,"gcurr":13.27,"gc":26.73,"mprev":-96.49,"mcurr":32.81,"aprev":140.0,"acurr":12.31,"uprev":1,"ucurr":3,"adcurr":4.98},{"sku":"SBI-108","sprev":59.05,"scurr":117.91,"gprev":9.17,"gcurr":34.67,"gc":25.5,"mprev":15.53,"mcurr":29.4,"aprev":5.37,"acurr":5.22,"uprev":4,"ucurr":8,"adcurr":6.16},{"sku":"SB-008","sprev":390.01,"scurr":374.12,"gprev":-33.97,"gcurr":-12.46,"gc":21.51,"mprev":-8.71,"mcurr":-3.33,"aprev":47.63,"acurr":43.2,"uprev":30,"ucurr":28,"adcurr":161.63},{"sku":"SB-021","sprev":68.35,"scurr":94.85,"gprev":13.92,"gcurr":35.3,"gc":21.38,"mprev":20.37,"mcurr":37.22,"aprev":22.14,"acurr":6.93,"uprev":5,"ucurr":7,"adcurr":6.57},{"sku":"SB-097","sprev":234.35,"scurr":315.95,"gprev":49.22,"gcurr":70.33,"gc":21.11,"mprev":21.0,"mcurr":22.26,"aprev":20.22,"acurr":8.24,"uprev":17,"ucurr":23,"adcurr":26.05},{"sku":"SB-040","sprev":191.1,"scurr":162.5,"gprev":3.74,"gcurr":24.31,"gc":20.57,"mprev":1.96,"mcurr":14.96,"aprev":30.94,"acurr":13.98,"uprev":14,"ucurr":12,"adcurr":22.71},{"sku":"SB-014","sprev":158.05,"scurr":159.5,"gprev":47.91,"gcurr":67.87,"gc":19.96,"mprev":30.31,"mcurr":42.55,"aprev":19.98,"acurr":7.45,"uprev":11,"ucurr":10,"adcurr":11.89},{"sku":"SB-013","sprev":27.9,"scurr":71.65,"gprev":12.62,"gcurr":31.9,"gc":19.28,"mprev":45.23,"mcurr":44.52,"aprev":0.0,"acurr":0.0,"uprev":2,"ucurr":5,"adcurr":0.0},{"sku":"SB-028","sprev":159.86,"scurr":192.5,"gprev":9.9,"gcurr":27.63,"gc":17.73,"mprev":6.19,"mcurr":14.35,"aprev":30.9,"acurr":31.02,"uprev":12,"ucurr":14,"adcurr":59.71},{"sku":"SB-117","sprev":163.9,"scurr":259.45,"gprev":37.45,"gcurr":53.81,"gc":16.36,"mprev":22.85,"mcurr":20.74,"aprev":33.34,"acurr":24.03,"uprev":12,"ucurr":19,"adcurr":62.34},{"sku":"SB-122NEW","sprev":138.95,"scurr":221.0,"gprev":28.63,"gcurr":43.44,"gc":14.81,"mprev":20.6,"mcurr":19.66,"aprev":15.24,"acurr":15.54,"uprev":10,"ucurr":16,"adcurr":34.35},{"sku":"SB-113","sprev":226.2,"scurr":244.1,"gprev":58.32,"gcurr":72.33,"gc":14.01,"mprev":25.78,"mcurr":29.63,"aprev":10.78,"acurr":4.7,"uprev":17,"ucurr":18,"adcurr":11.48},{"sku":"SBI-134NEW","sprev":118.85,"scurr":105.78,"gprev":12.84,"gcurr":24.24,"gc":11.4,"mprev":10.8,"mcurr":22.92,"aprev":32.83,"acurr":18.32,"uprev":8,"ucurr":7,"adcurr":19.38},{"sku":"SBB-110","sprev":0.0,"scurr":19.55,"gprev":0.0,"gcurr":10.55,"gc":10.55,"mprev":0.0,"mcurr":53.96,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":1,"adcurr":0.0},{"sku":"SBI-107NEW","sprev":55.85,"scurr":74.65,"gprev":26.89,"gcurr":37.42,"gc":10.53,"mprev":48.15,"mcurr":50.13,"aprev":1.9,"acurr":0.0,"uprev":3,"ucurr":4,"adcurr":0.0},{"sku":"SB-112","sprev":283.11,"scurr":290.22,"gprev":34.27,"gcurr":44.63,"gc":10.36,"mprev":12.1,"mcurr":15.38,"aprev":28.0,"acurr":26.24,"uprev":21,"ucurr":22,"adcurr":76.16},{"sku":"SBI-132","sprev":33.9,"scurr":50.85,"gprev":7.62,"gcurr":16.92,"gc":9.3,"mprev":22.48,"mcurr":33.27,"aprev":25.07,"acurr":14.28,"uprev":2,"ucurr":3,"adcurr":7.26},{"sku":"NBI-110","sprev":38.85,"scurr":64.75,"gprev":12.75,"gcurr":21.25,"gc":8.5,"mprev":32.82,"mcurr":32.82,"aprev":0.0,"acurr":0.0,"uprev":3,"ucurr":5,"adcurr":0.0},{"sku":"SBI-111","sprev":97.45,"scurr":65.25,"gprev":10.57,"gcurr":18.83,"gc":8.26,"mprev":10.85,"mcurr":28.86,"aprev":36.58,"acurr":18.74,"uprev":6,"ucurr":4,"adcurr":12.23},{"sku":"SB-064UPC","sprev":59.94,"scurr":59.94,"gprev":11.83,"gcurr":19.68,"gc":7.85,"mprev":19.74,"mcurr":32.83,"aprev":17.78,"acurr":5.41,"uprev":6,"ucurr":6,"adcurr":3.24},{"sku":"SBI-136","sprev":131.35,"scurr":128.8,"gprev":23.29,"gcurr":30.67,"gc":7.38,"mprev":17.73,"mcurr":23.81,"aprev":24.73,"acurr":24.21,"uprev":8,"ucurr":8,"adcurr":31.18},{"sku":"SBI-121","sprev":41.85,"scurr":41.85,"gprev":6.55,"gcurr":13.38,"gc":6.83,"mprev":15.65,"mcurr":31.97,"aprev":32.88,"acurr":16.56,"uprev":3,"ucurr":3,"adcurr":6.93},{"sku":"3PK-SCAL-005","sprev":35.8,"scurr":89.77,"gprev":10.97,"gcurr":15.42,"gc":4.45,"mprev":30.64,"mcurr":17.18,"aprev":0.0,"acurr":0.0,"uprev":2,"ucurr":5,"adcurr":0.0},{"sku":"SB-095","sprev":105.66,"scurr":128.8,"gprev":20.25,"gcurr":23.99,"gc":3.74,"mprev":19.17,"mcurr":18.63,"aprev":17.88,"acurr":15.8,"uprev":10,"ucurr":10,"adcurr":20.35},{"sku":"SB-011-L","sprev":27.9,"scurr":41.85,"gprev":6.52,"gcurr":4.25,"gc":-2.27,"mprev":23.37,"mcurr":10.16,"aprev":24.44,"acurr":37.63,"uprev":2,"ucurr":3,"adcurr":15.75},{"sku":"SB-035","sprev":193.27,"scurr":320.74,"gprev":23.84,"gcurr":20.34,"gc":-3.5,"mprev":12.34,"mcurr":6.34,"aprev":35.38,"acurr":40.07,"uprev":13,"ucurr":22,"adcurr":128.52},{"sku":"SB-099","sprev":363.47,"scurr":444.35,"gprev":-6.36,"gcurr":-10.68,"gc":-4.32,"mprev":-1.75,"mcurr":-2.4,"aprev":37.22,"acurr":42.99,"uprev":27,"ucurr":33,"adcurr":191.02},{"sku":"SB-100","sprev":223.2,"scurr":167.4,"gprev":64.21,"gcurr":58.33,"gc":-5.88,"mprev":28.77,"mcurr":34.84,"aprev":18.59,"acurr":4.64,"uprev":16,"ucurr":12,"adcurr":7.77},{"sku":"SB-019","sprev":99.9,"scurr":94.5,"gprev":9.54,"gcurr":3.35,"gc":-6.19,"mprev":9.55,"mcurr":3.54,"aprev":28.55,"acurr":32.61,"uprev":10,"ucurr":9,"adcurr":30.82},{"sku":"SB-067","sprev":243.85,"scurr":212.08,"gprev":67.76,"gcurr":61.55,"gc":-6.21,"mprev":27.79,"mcurr":29.02,"aprev":13.44,"acurr":17.73,"uprev":18,"ucurr":15,"adcurr":37.61},{"sku":"SBI-105","sprev":48.71,"scurr":33.33,"gprev":21.49,"gcurr":14.81,"gc":-6.68,"mprev":44.12,"mcurr":44.43,"aprev":3.35,"acurr":0.0,"uprev":3,"ucurr":2,"adcurr":0.0},{"sku":"SB-010","sprev":160.2,"scurr":166.82,"gprev":66.69,"gcurr":57.82,"gc":-8.87,"mprev":41.63,"mcurr":34.66,"aprev":6.23,"acurr":4.15,"uprev":11,"ucurr":12,"adcurr":6.93},{"sku":"SB-029","sprev":149.25,"scurr":135.3,"gprev":12.04,"gcurr":-5.85,"gc":-17.89,"mprev":8.07,"mcurr":-4.32,"aprev":35.6,"acurr":39.46,"uprev":11,"ucurr":10,"adcurr":53.39},{"sku":"SBI-100 New","sprev":138.65,"scurr":177.55,"gprev":44.08,"gcurr":25.6,"gc":-18.48,"mprev":31.79,"mcurr":14.42,"aprev":12.28,"acurr":30.16,"uprev":7,"ucurr":9,"adcurr":53.55},{"sku":"SBI-112","sprev":321.66,"scurr":226.05,"gprev":101.91,"gcurr":80.5,"gc":-21.41,"mprev":31.68,"mcurr":35.61,"aprev":6.06,"acurr":13.15,"uprev":20,"ucurr":14,"adcurr":29.72},{"sku":"SB-039","sprev":397.55,"scurr":294.42,"gprev":57.23,"gcurr":32.04,"gc":-25.19,"mprev":14.4,"mcurr":10.88,"aprev":27.38,"acurr":29.72,"uprev":29,"ucurr":22,"adcurr":87.49},{"sku":"SBI-101NEW","sprev":285.8,"scurr":156.9,"gprev":50.65,"gcurr":23.58,"gc":-27.07,"mprev":17.72,"mcurr":15.03,"aprev":14.58,"acurr":12.54,"uprev":18,"ucurr":10,"adcurr":19.67},{"sku":"SB-052","sprev":150.65,"scurr":230.15,"gprev":25.31,"gcurr":-4.34,"gc":-29.65,"mprev":16.8,"mcurr":-1.89,"aprev":26.45,"acurr":31.09,"uprev":11,"ucurr":17,"adcurr":71.56},{"sku":"SB-042","sprev":166.55,"scurr":46.45,"gprev":37.94,"gcurr":7.56,"gc":-30.38,"mprev":22.78,"mcurr":16.28,"aprev":11.8,"acurr":8.25,"uprev":11,"ucurr":3,"adcurr":3.83},{"sku":"SB-125","sprev":785.76,"scurr":1019.08,"gprev":164.47,"gcurr":133.82,"gc":-30.65,"mprev":20.93,"mcurr":13.13,"aprev":22.0,"acurr":25.99,"uprev":55,"ucurr":73,"adcurr":264.83},{"sku":"NSB-110","sprev":129.45,"scurr":74.4,"gprev":51.47,"gcurr":15.35,"gc":-36.12,"mprev":39.76,"mcurr":20.63,"aprev":7.59,"acurr":11.41,"uprev":9,"ucurr":5,"adcurr":8.49},{"sku":"SB-051","sprev":260.15,"scurr":136.0,"gprev":26.87,"gcurr":-11.66,"gc":-38.53,"mprev":10.33,"mcurr":-8.57,"aprev":29.68,"acurr":31.99,"uprev":19,"ucurr":10,"adcurr":43.5},{"sku":"SBI-110","sprev":198.29,"scurr":142.45,"gprev":24.57,"gcurr":-33.92,"gc":-58.49,"mprev":12.39,"mcurr":-23.81,"aprev":18.76,"acurr":19.05,"uprev":16,"ucurr":11,"adcurr":27.14},{"sku":"SB-110","sprev":546.71,"scurr":279.03,"gprev":201.07,"gcurr":121.18,"gc":-79.89,"mprev":36.78,"mcurr":43.43,"aprev":7.12,"acurr":1.42,"uprev":40,"ucurr":20,"adcurr":3.95},{"sku":"SB-111","sprev":309.57,"scurr":0.0,"gprev":114.62,"gcurr":0.0,"gc":-114.62,"mprev":37.03,"mcurr":0.0,"aprev":7.53,"acurr":0.0,"uprev":23,"ucurr":0,"adcurr":0.0},{"sku":"SBI-126","sprev":646.84,"scurr":428.05,"gprev":129.73,"gcurr":-0.08,"gc":-129.81,"mprev":20.06,"mcurr":-0.02,"aprev":14.17,"acurr":21.4,"uprev":48,"ucurr":32,"adcurr":91.6},{"sku":"SB-093","sprev":553.37,"scurr":39.7,"gprev":155.34,"gcurr":-26.95,"gc":-182.29,"mprev":28.07,"mcurr":-67.88,"aprev":6.85,"acurr":0.3,"uprev":38,"ucurr":2,"adcurr":0.12}];
+const skuDataW19 = [{"sku":"SBI-126","sprev":428.05,"scurr":607.45,"gprev":-0.08,"gcurr":66.85,"gc":66.93,"mprev":-0.02,"mcurr":11.01,"aprev":21.4,"acurr":13.37,"uprev":32,"ucurr":44,"adcurr":81.22},{"sku":"SB-125","sprev":1019.08,"scurr":1158.4,"gprev":133.82,"gcurr":191.1,"gc":57.28,"mprev":13.13,"mcurr":16.5,"aprev":25.99,"acurr":16.41,"uprev":73,"ucurr":83,"adcurr":190.08},{"sku":"SB-051","sprev":136.0,"scurr":357.8,"gprev":-11.66,"gcurr":45.17,"gc":56.83,"mprev":-8.57,"mcurr":12.62,"aprev":31.99,"acurr":19.21,"uprev":10,"ucurr":26,"adcurr":68.74},{"sku":"SB-100","sprev":167.4,"scurr":390.6,"gprev":58.33,"gcurr":114.38,"gc":56.05,"mprev":34.84,"mcurr":29.28,"aprev":4.64,"acurr":7.48,"uprev":12,"ucurr":28,"adcurr":29.23},{"sku":"SB-040","sprev":162.5,"scurr":240.02,"gprev":24.31,"gcurr":67.61,"gc":43.3,"mprev":14.96,"mcurr":28.17,"aprev":13.98,"acurr":5.87,"uprev":12,"ucurr":18,"adcurr":14.08},{"sku":"SB-114","sprev":505.15,"scurr":554.66,"gprev":155.01,"gcurr":180.99,"gc":25.98,"mprev":30.69,"mcurr":32.63,"aprev":12.43,"acurr":6.63,"uprev":38,"ucurr":42,"adcurr":36.75},{"sku":"SB-039","sprev":294.42,"scurr":433.92,"gprev":32.04,"gcurr":56.61,"gc":24.57,"mprev":10.88,"mcurr":13.05,"aprev":29.72,"acurr":20.06,"uprev":22,"ucurr":32,"adcurr":87.04},{"sku":"SBI-100 New","sprev":177.55,"scurr":179.55,"gprev":25.6,"gcurr":48.76,"gc":23.16,"mprev":14.42,"mcurr":27.16,"aprev":30.16,"acurr":16.72,"uprev":9,"ucurr":9,"adcurr":30.02},{"sku":"SB-014","sprev":159.5,"scurr":350.9,"gprev":67.87,"gcurr":88.71,"gc":20.84,"mprev":42.55,"mcurr":25.28,"aprev":7.45,"acurr":12.01,"uprev":10,"ucurr":22,"adcurr":42.13},{"sku":"SB-093","sprev":39.7,"scurr":39.9,"gprev":-26.95,"gcurr":-10.78,"gc":16.17,"mprev":-67.88,"mcurr":-27.02,"aprev":0.3,"acurr":0.68,"uprev":2,"ucurr":2,"adcurr":0.27},{"sku":"SB-029","sprev":135.3,"scurr":119.95,"gprev":-5.85,"gcurr":10.25,"gc":16.1,"mprev":-4.32,"mcurr":8.55,"aprev":39.46,"acurr":31.12,"uprev":10,"ucurr":9,"adcurr":37.33},{"sku":"SBI-136","sprev":128.8,"scurr":148.3,"gprev":30.67,"gcurr":43.86,"gc":13.19,"mprev":23.81,"mcurr":29.58,"aprev":24.21,"acurr":17.11,"uprev":8,"ucurr":9,"adcurr":25.38},{"sku":"SB-023","sprev":332.45,"scurr":279.3,"gprev":129.48,"gcurr":142.06,"gc":12.58,"mprev":38.95,"mcurr":50.86,"aprev":2.04,"acurr":1.07,"uprev":17,"ucurr":14,"adcurr":2.99},{"sku":"SB-011-L","sprev":41.85,"scurr":125.55,"gprev":4.25,"gcurr":16.38,"gc":12.13,"mprev":10.16,"mcurr":13.05,"aprev":37.63,"acurr":25.87,"uprev":3,"ucurr":9,"adcurr":32.48},{"sku":"SB-034","sprev":0.0,"scurr":0.0,"gprev":-11.18,"gcurr":-1.1,"gc":10.08,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SB-060","sprev":0.0,"scurr":13.95,"gprev":0.0,"gcurr":6.57,"gc":6.57,"mprev":0.0,"mcurr":47.1,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":1,"adcurr":0.0},{"sku":"SB-111","sprev":0.0,"scurr":0.0,"gprev":-10.91,"gcurr":-4.42,"gc":6.49,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SB-044","sprev":0.0,"scurr":13.25,"gprev":0.0,"gcurr":6.06,"gc":6.06,"mprev":0.0,"mcurr":45.74,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":1,"adcurr":0.0},{"sku":"SBI-110","sprev":142.45,"scurr":64.75,"gprev":-33.92,"gcurr":-28.6,"gc":5.32,"mprev":-23.81,"mcurr":-44.17,"aprev":19.05,"acurr":8.31,"uprev":11,"ucurr":5,"adcurr":5.38},{"sku":"SB-052","sprev":230.15,"scurr":94.85,"gprev":-4.34,"gcurr":0.63,"gc":4.97,"mprev":-1.89,"mcurr":0.66,"aprev":31.09,"acurr":30.79,"uprev":17,"ucurr":7,"adcurr":29.2},{"sku":"SB-042","sprev":46.45,"scurr":33.2,"gprev":7.56,"gcurr":11.09,"gc":3.53,"mprev":16.28,"mcurr":33.4,"aprev":8.25,"acurr":11.69,"uprev":3,"ucurr":2,"adcurr":3.88},{"sku":"SB-098","sprev":800.72,"scurr":1057.86,"gprev":181.43,"gcurr":184.29,"gc":2.86,"mprev":22.66,"mcurr":17.42,"aprev":19.37,"acurr":17.54,"uprev":59,"ucurr":78,"adcurr":185.57},{"sku":"SBI-121","sprev":41.85,"scurr":41.85,"gprev":13.38,"gcurr":16.13,"gc":2.75,"mprev":31.97,"mcurr":38.54,"aprev":16.56,"acurr":7.1,"uprev":3,"ucurr":3,"adcurr":2.97},{"sku":"ACAD-SCAL-005","sprev":0.0,"scurr":0.0,"gprev":-0.26,"gcurr":0.0,"gc":0.26,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SBI-100","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SBI-100MF","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SBI-100NEW","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SBI-101","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SBI-101MF","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"Amazon.Found.B0CVH82SDY","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"Amazon.Found.B0CBG1WHWC","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"Amazon.Found.B0C3KXNN7H","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"Amazon.Found.B0C1J2BFLM","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"Amazon.Found.B0BR6DFCW4","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SBI-143","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":0.0,"gc":0.0,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SB-092","sprev":0.0,"scurr":0.0,"gprev":0.83,"gcurr":0.0,"gc":-0.83,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SBI-134NEW","sprev":105.78,"scurr":74.75,"gprev":24.24,"gcurr":23.29,"gc":-0.95,"mprev":22.92,"mcurr":31.16,"aprev":18.32,"acurr":9.69,"uprev":7,"ucurr":5,"adcurr":7.24},{"sku":"SBI-105","sprev":33.33,"scurr":33.33,"gprev":14.81,"gcurr":11.96,"gc":-2.85,"mprev":44.43,"mcurr":35.88,"aprev":0.0,"acurr":0.0,"uprev":2,"ucurr":2,"adcurr":0.0},{"sku":"PN-5NC6-G6LN","sprev":0.0,"scurr":0.0,"gprev":2.99,"gcurr":0.0,"gc":-2.99,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SB-019","sprev":94.5,"scurr":64.52,"gprev":3.35,"gcurr":-1.38,"gc":-4.73,"mprev":3.54,"mcurr":-2.14,"aprev":32.61,"acurr":15.28,"uprev":9,"ucurr":6,"adcurr":9.86},{"sku":"SB-058","sprev":40.45,"scurr":40.45,"gprev":13.27,"gcurr":8.15,"gc":-5.12,"mprev":32.81,"mcurr":20.15,"aprev":12.31,"acurr":20.84,"uprev":3,"ucurr":3,"adcurr":8.43},{"sku":"SBI-111","sprev":65.25,"scurr":48.3,"gprev":18.83,"gcurr":12.94,"gc":-5.89,"mprev":28.86,"mcurr":26.79,"aprev":18.74,"acurr":10.62,"uprev":4,"ucurr":3,"adcurr":5.13},{"sku":"NSB-110","sprev":74.4,"scurr":79.65,"gprev":15.35,"gcurr":8.07,"gc":-7.28,"mprev":20.63,"mcurr":10.13,"aprev":11.41,"acurr":35.78,"uprev":5,"ucurr":5,"adcurr":28.5},{"sku":"SB-090","sprev":95.55,"scurr":80.9,"gprev":33.4,"gcurr":23.45,"gc":-9.95,"mprev":34.96,"mcurr":28.99,"aprev":8.25,"acurr":10.32,"uprev":7,"ucurr":6,"adcurr":8.35},{"sku":"NSB-098","sprev":95.41,"scurr":82.02,"gprev":25.82,"gcurr":15.85,"gc":-9.97,"mprev":27.06,"mcurr":19.32,"aprev":17.44,"acurr":21.92,"uprev":7,"ucurr":6,"adcurr":17.98},{"sku":"SB-011","sprev":0.0,"scurr":0.0,"gprev":0.0,"gcurr":-10.33,"gc":-10.33,"mprev":0.0,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":0,"ucurr":0,"adcurr":0.0},{"sku":"SBB-110","sprev":19.55,"scurr":0.0,"gprev":10.55,"gcurr":0.0,"gc":-10.55,"mprev":53.96,"mcurr":0.0,"aprev":0.0,"acurr":0.0,"uprev":1,"ucurr":0,"adcurr":0.0},{"sku":"SB-013","sprev":71.65,"scurr":58.4,"gprev":31.9,"gcurr":21.08,"gc":-10.82,"mprev":44.52,"mcurr":36.1,"aprev":0.0,"acurr":0.0,"uprev":5,"ucurr":4,"adcurr":0.0},{"sku":"SBI-132","sprev":50.85,"scurr":16.95,"gprev":16.92,"gcurr":4.42,"gc":-12.5,"mprev":33.27,"mcurr":26.08,"aprev":14.28,"acurr":0.0,"uprev":3,"ucurr":1,"adcurr":0.0},{"sku":"3PK-SCAL-005","sprev":89.77,"scurr":53.79,"gprev":15.42,"gcurr":-9.14,"gc":-24.56,"mprev":17.18,"mcurr":-16.99,"aprev":0.0,"acurr":0.0,"uprev":5,"ucurr":3,"adcurr":0.0},{"sku":"NBI-110","sprev":64.75,"scurr":12.95,"gprev":21.25,"gcurr":-7.41,"gc":-28.66,"mprev":32.82,"mcurr":-57.22,"aprev":0.0,"acurr":0.0,"uprev":5,"ucurr":1,"adcurr":0.0},{"sku":"SB-010","sprev":166.82,"scurr":76.25,"gprev":57.82,"gcurr":29.11,"gc":-28.71,"mprev":34.66,"mcurr":38.18,"aprev":4.15,"acurr":2.85,"uprev":12,"ucurr":5,"adcurr":2.17},{"sku":"SBI-106","sprev":0.0,"scurr":17.95,"gprev":-2.73,"gcurr":-35.6,"gc":-32.87,"mprev":0.0,"mcurr":-198.33,"aprev":0.0,"acurr":3.79,"uprev":0,"ucurr":1,"adcurr":0.68},{"sku":"SB-112","sprev":290.22,"scurr":318.76,"gprev":44.63,"gcurr":10.91,"gc":-33.72,"mprev":15.38,"mcurr":3.42,"aprev":26.24,"acurr":34.37,"uprev":22,"ucurr":24,"adcurr":109.57},{"sku":"SBI-101NEW","sprev":156.9,"scurr":53.55,"gprev":23.58,"gcurr":-10.31,"gc":-33.89,"mprev":15.03,"mcurr":-19.25,"aprev":12.54,"acurr":22.0,"uprev":10,"ucurr":3,"adcurr":11.78},{"sku":"SB-053","sprev":205.9,"scurr":159.45,"gprev":45.93,"gcurr":11.07,"gc":-34.86,"mprev":22.31,"mcurr":6.94,"aprev":14.6,"acurr":6.2,"uprev":12,"ucurr":10,"adcurr":9.88},{"sku":"SB-081","sprev":226.77,"scurr":147.15,"gprev":49.61,"gcurr":14.05,"gc":-35.56,"mprev":21.88,"mcurr":9.55,"aprev":12.38,"acurr":3.54,"uprev":17,"ucurr":11,"adcurr":5.21},{"sku":"SB-122NEW","sprev":221.0,"scurr":111.47,"gprev":43.44,"gcurr":5.89,"gc":-37.55,"mprev":19.66,"mcurr":5.28,"aprev":15.54,"acurr":33.33,"uprev":16,"ucurr":8,"adcurr":37.15},{"sku":"SBI-108","sprev":117.91,"scurr":28.4,"gprev":34.67,"gcurr":-3.04,"gc":-37.71,"mprev":29.4,"mcurr":-10.7,"aprev":5.22,"acurr":23.59,"uprev":8,"ucurr":2,"adcurr":6.7},{"sku":"SB-064UPC","sprev":59.94,"scurr":39.96,"gprev":19.68,"gcurr":-19.09,"gc":-38.77,"mprev":32.83,"mcurr":-47.77,"aprev":5.41,"acurr":36.66,"uprev":6,"ucurr":4,"adcurr":14.65},{"sku":"SB-095","sprev":128.8,"scurr":136.0,"gprev":23.99,"gcurr":-18.18,"gc":-42.17,"mprev":18.63,"mcurr":-13.37,"aprev":15.8,"acurr":47.51,"uprev":10,"ucurr":10,"adcurr":64.62},{"sku":"SB-008","sprev":374.12,"scurr":296.56,"gprev":-12.46,"gcurr":-55.41,"gc":-42.95,"mprev":-3.33,"mcurr":-18.68,"aprev":43.2,"acurr":46.44,"uprev":28,"ucurr":22,"adcurr":137.71},{"sku":"SB-021","sprev":94.85,"scurr":13.25,"gprev":35.3,"gcurr":-7.66,"gc":-42.96,"mprev":37.22,"mcurr":-57.81,"aprev":6.93,"acurr":67.25,"uprev":7,"ucurr":1,"adcurr":8.91},{"sku":"SB-097","sprev":315.95,"scurr":300.6,"gprev":70.33,"gcurr":26.82,"gc":-43.51,"mprev":22.26,"mcurr":8.92,"aprev":8.24,"acurr":13.08,"uprev":23,"ucurr":22,"adcurr":39.32},{"sku":"SB-046","sprev":124.15,"scurr":26.5,"gprev":41.08,"gcurr":-2.69,"gc":-43.77,"mprev":33.09,"mcurr":-10.15,"aprev":12.41,"acurr":42.57,"uprev":9,"ucurr":2,"adcurr":11.28},{"sku":"SB-071","sprev":328.25,"scurr":356.1,"gprev":96.78,"gcurr":52.94,"gc":-43.84,"mprev":29.48,"mcurr":14.87,"aprev":5.49,"acurr":7.0,"uprev":26,"ucurr":28,"adcurr":24.91},{"sku":"SBI-109","sprev":551.98,"scurr":397.7,"gprev":141.98,"gcurr":93.92,"gc":-48.06,"mprev":25.72,"mcurr":23.62,"aprev":10.29,"acurr":11.87,"uprev":32,"ucurr":23,"adcurr":47.2},{"sku":"SB-113","sprev":244.1,"scurr":147.85,"gprev":72.33,"gcurr":23.99,"gc":-48.34,"mprev":29.63,"mcurr":16.23,"aprev":4.7,"acurr":6.84,"uprev":18,"ucurr":11,"adcurr":10.11},{"sku":"SB-118","sprev":111.6,"scurr":0.0,"gprev":50.45,"gcurr":-0.46,"gc":-50.91,"mprev":45.21,"mcurr":0.0,"aprev":0.74,"acurr":0.0,"uprev":8,"ucurr":0,"adcurr":0.0},{"sku":"SB-049","sprev":177.85,"scurr":83.0,"gprev":41.98,"gcurr":-10.28,"gc":-52.26,"mprev":23.6,"mcurr":-12.39,"aprev":20.1,"acurr":32.58,"uprev":13,"ucurr":6,"adcurr":27.04},{"sku":"SBI-107NEW","sprev":74.65,"scurr":14.8,"gprev":37.42,"gcurr":-19.75,"gc":-57.17,"mprev":50.13,"mcurr":-133.45,"aprev":0.0,"acurr":0.0,"uprev":4,"ucurr":1,"adcurr":0.0},{"sku":"SB-117","sprev":259.45,"scurr":108.8,"gprev":53.81,"gcurr":-9.11,"gc":-62.92,"mprev":20.74,"mcurr":-8.37,"aprev":24.03,"acurr":42.43,"uprev":19,"ucurr":8,"adcurr":46.16},{"sku":"SB-028","sprev":192.5,"scurr":83.7,"gprev":27.63,"gcurr":-35.36,"gc":-62.99,"mprev":14.35,"mcurr":-42.25,"aprev":31.02,"acurr":57.47,"uprev":14,"ucurr":6,"adcurr":48.1},{"sku":"SB-105","sprev":573.5,"scurr":606.2,"gprev":166.69,"gcurr":98.41,"gc":-68.28,"mprev":29.07,"mcurr":16.23,"aprev":11.07,"acurr":14.74,"uprev":43,"ucurr":46,"adcurr":89.37},{"sku":"SB-056","sprev":378.7,"scurr":325.7,"gprev":92.61,"gcurr":22.58,"gc":-70.03,"mprev":24.45,"mcurr":6.93,"aprev":22.3,"acurr":25.54,"uprev":28,"ucurr":24,"adcurr":83.2},{"sku":"SB-067","sprev":212.08,"scurr":104.65,"gprev":61.55,"gcurr":-9.44,"gc":-70.99,"mprev":29.02,"mcurr":-9.02,"aprev":17.73,"acurr":41.25,"uprev":15,"ucurr":7,"adcurr":43.17},{"sku":"SBI-104","sprev":274.8,"scurr":151.35,"gprev":112.01,"gcurr":30.6,"gc":-81.41,"mprev":40.76,"mcurr":20.22,"aprev":5.96,"acurr":17.06,"uprev":20,"ucurr":11,"adcurr":25.82},{"sku":"SB-109u","sprev":406.55,"scurr":165.85,"gprev":148.92,"gcurr":57.74,"gc":-91.18,"mprev":36.63,"mcurr":34.81,"aprev":5.98,"acurr":7.78,"uprev":28,"ucurr":11,"adcurr":12.91},{"sku":"SBI-112","sprev":226.05,"scurr":126.85,"gprev":80.5,"gcurr":-20.53,"gc":-101.03,"mprev":35.61,"mcurr":-16.18,"aprev":13.15,"acurr":27.31,"uprev":14,"ucurr":8,"adcurr":34.64},{"sku":"SB-035","sprev":320.74,"scurr":166.17,"gprev":20.34,"gcurr":-84.44,"gc":-104.78,"mprev":6.34,"mcurr":-50.82,"aprev":40.07,"acurr":88.94,"uprev":22,"ucurr":11,"adcurr":147.79},{"sku":"SB-099","sprev":444.35,"scurr":317.32,"gprev":-10.68,"gcurr":-121.21,"gc":-110.53,"mprev":-2.4,"mcurr":-38.2,"aprev":42.99,"acurr":59.98,"uprev":33,"ucurr":23,"adcurr":190.32},{"sku":"SB-033","sprev":456.43,"scurr":217.76,"gprev":93.07,"gcurr":-30.5,"gc":-123.57,"mprev":20.39,"mcurr":-14.01,"aprev":25.28,"acurr":53.77,"uprev":33,"ucurr":16,"adcurr":117.09},{"sku":"SBI-103","sprev":320.05,"scurr":94.1,"gprev":95.58,"gcurr":-50.21,"gc":-145.79,"mprev":29.86,"mcurr":-53.36,"aprev":14.19,"acurr":75.05,"uprev":21,"ucurr":6,"adcurr":70.62},{"sku":"SB-110","sprev":279.03,"scurr":0.0,"gprev":121.18,"gcurr":-25.12,"gc":-146.3,"mprev":43.43,"mcurr":0.0,"aprev":1.42,"acurr":0.0,"uprev":20,"ucurr":0,"adcurr":0.0},{"sku":"SB-124","sprev":1240.85,"scurr":746.19,"gprev":238.99,"gcurr":14.7,"gc":-224.29,"mprev":19.26,"mcurr":1.97,"aprev":22.14,"acurr":33.61,"uprev":94,"ucurr":55,"adcurr":250.77},{"sku":"SB-032","sprev":717.75,"scurr":446.6,"gprev":205.69,"gcurr":-46.71,"gc":-252.4,"mprev":28.66,"mcurr":-10.46,"aprev":20.48,"acurr":39.93,"uprev":45,"ucurr":28,"adcurr":178.32}];
+
+const weekMeta = {
+  w18: {
+    label: "W18", prevLabel: "W17", currLabel: "W18",
+    period: "Week 18 &nbsp;|&nbsp; Apr 27&ndash;May 3, 2026 &nbsp;&bull;&nbsp; vs W17 (Apr 20&ndash;26)",
+    kpis: {
+      sales: 16165, salesPrev: 14967, salesDelta: 8.0, salesDeltaDir: "up",
+      spend: 2925, spendPrev: 3391, spendDelta: -13.7, spendDeltaDir: "up",
+      gp: 3431, gpPrev: 2577, gpDelta: 33.1, gpDeltaDir: "up",
+      tacos: 18.1, tacosPrev: 22.7, tacosDelta: -4.6, tacosDeltaDir: "up",
+      acos: 50.2, acosNote: "PPC Ad Sales: $5,824",
+      organic: 64.0, organicSales: 10341,
+      cpc: 0.94, cpcClicks: 3104,
+      cvr: 12.0, cvrNote: "374 orders / 3,104 clicks",
+      unitSess: 12.8, unitSessNote: "1,086 units / 8,486 sessions",
+      units: 1144, unitsPrev: 1065, unitsDelta: 7.4, unitsDeltaDir: "up",
+      sessions: 8486, sessionsNote: "Apr 27 &ndash; May 3, 2026",
+      buybox: 95.5, buyboxPrev: 93.0, buyboxDelta: 2.5, buyboxDeltaDir: "up"
+    },
+    wow: {
+      sales: { prev: 14967, curr: 16165 },
+      gp: { prev: 2577, curr: 3431 },
+      spend: { prev: 3391, curr: 2925 },
+      tacos: { prev: 22.7, curr: 18.1 },
+      units: { prev: 1065, curr: 1144 },
+      buybox: { prev: 93.0, curr: 95.5 }
+    },
+    chartLabels: ["W17","W18"],
+    chartSales: [14967,16165],
+    chartGP: [2577,3431],
+    chartSpend: [3391,2925],
+    top5: ["SB-124","SB-032","SB-098","SB-105","SB-114"],
+    top5GP: [238.99,205.69,181.43,166.69,155.01]
+  },
+  w19: {
+    label: "W19", prevLabel: "W18", currLabel: "W19",
+    period: "Week 19 &nbsp;|&nbsp; May 4&ndash;10, 2026 &nbsp;&bull;&nbsp; vs W18 (Apr 27&ndash;May 3)",
+    kpis: {
+      sales: 13339, salesPrev: 16165, salesDelta: -17.5, salesDeltaDir: "down",
+      spend: 2852, spendPrev: 2925, spendDelta: -2.5, spendDeltaDir: "up",
+      gp: 1231, gpPrev: 3431, gpDelta: -64.1, gpDeltaDir: "down",
+      tacos: 21.4, tacosPrev: 18.1, tacosDelta: 3.3, tacosDeltaDir: "down",
+      acos: 59.5, acosNote: "PPC Ad Spend / PPC Ad Sales",
+      organic: 64.0, organicSales: 8543,
+      cpc: 0.92, cpcClicks: 3100,
+      cvr: 10.1, cvrNote: "Orders from PPC clicks",
+      unitSess: 11.0, unitSessNote: "943 units / 8,463 sessions",
+      units: 943, unitsPrev: 1144, unitsDelta: -17.5, unitsDeltaDir: "down",
+      sessions: 8463, sessionsNote: "May 4 &ndash; 10, 2026",
+      buybox: 94.6, buyboxPrev: 95.5, buyboxDelta: -0.9, buyboxDeltaDir: "down"
+    },
+    wow: {
+      sales: { prev: 16165, curr: 13339 },
+      gp: { prev: 3431, curr: 1231 },
+      spend: { prev: 2925, curr: 2852 },
+      tacos: { prev: 18.1, curr: 21.4 },
+      units: { prev: 1144, curr: 943 },
+      buybox: { prev: 95.5, curr: 94.6 }
+    },
+    chartLabels: ["W18","W19"],
+    chartSales: [16165,13339],
+    chartGP: [3431,1231],
+    chartSpend: [2925,2852],
+    top5: ["SB-125","SB-098","SB-114","SB-023","SB-100"],
+    top5GP: [191.10,184.29,180.99,142.06,114.38]
+  }
+};
+
+let currentWeek = "w19";
+let chartSalesGP_inst = null, chartSpendGP_inst = null, chartTop5_inst = null;
+
+function $(id){ return document.getElementById(id); }
+function fmtMoney(v){ return "$" + Math.abs(v).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function fmtMoneyK(v){ return "$" + v.toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:0}); }
+function fmtPct(v){ return v.toFixed(1)+"%"; }
+
+// ============================================================
+// WEEK SWITCHER
+// ============================================================
+function switchWeek(wk) {
+  currentWeek = wk;
+  // Update buttons
+  $("btn-w18").classList.toggle("active", wk==="w18");
+  $("btn-w19").classList.toggle("active", wk==="w19");
+  // Update header
+  const m = weekMeta[wk];
+  $("headerPeriod").innerHTML = m.period;
+  $("footerText").innerHTML = "Sproutbrite PPC Dashboard &mdash; " + m.label + " &mdash; " + (wk==="w18" ? "Apr 27&ndash;May 3, 2026" : "May 4&ndash;10, 2026");
+  // Rebuild all content
+  buildKPIs();
+  buildWowGrid();
+  buildSkuWow();
+  buildSkuPerf();
+  buildCharts();
+  buildTop5Bot5();
+  // Show/hide campaign & terms sections
+  $("actions-w18").style.display = wk==="w18" ? "block" : "none";
+  $("actions-w19").style.display = wk==="w19" ? "block" : "none";
+  $("terms-w18").style.display = wk==="w18" ? "block" : "none";
+  $("terms-w19").style.display = wk==="w19" ? "block" : "none";
+  // Update WoW tab labels
+  const wkLabel = m.currLabel;
+  $("improvLabel").textContent = wkLabel;
+  $("declLabel").textContent = wkLabel;
+  $("hGPPrev").textContent = "GP " + m.prevLabel;
+  $("hGPCurr").textContent = "GP " + m.currLabel;
+  $("hMPrev").textContent = "Margin " + m.prevLabel;
+  $("hMCurr").textContent = "Margin " + m.currLabel;
+  $("hAPrev").textContent = "ACOS " + m.prevLabel;
+  $("hACurr").textContent = "ACOS " + m.currLabel;
+  $("top5Title").textContent = "Top 5 SKUs — Week " + m.label + " (by Gross Profit)";
+  $("bot5Title").textContent = "Bottom 5 SKUs — Week " + m.label + " (by Gross Profit)";
+  $("top5ChartTitle").textContent = "Top 5 SKUs — Gross Profit " + m.label + " (Bar)";
+}
+
+// ============================================================
+// KPI CARDS
+// ============================================================
+function buildKPIs() {
+  const m = weekMeta[currentWeek];
+  const k = m.kpis;
+  const wkBadge = currentWeek === "w19" ? "w19" : "";
+  const badgeClass = "wk-badge" + (wkBadge ? " "+wkBadge : "");
+  const wk = m.currLabel;
+  
+  function deltaHtml(dir, val, suffix="") {
+    if(dir==="up") return `<div class="delta up">&#x25B2; ${val > 0 ? "+" : ""}${val.toFixed(1)}${suffix} vs last week</div>`;
+    if(dir==="down") return `<div class="delta down">&#x25BC; ${val.toFixed(1)}${suffix} vs last week</div>`;
+    return `<div class="delta neutral">${suffix}</div>`;
+  }
+  
+  const cards = [
+    `<div class="kpi-card"><div class="label">Total Sales <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${fmtMoneyK(k.sales)}</div>
+      ${deltaHtml(k.salesDeltaDir, k.salesDelta, "%")}
+      <div class="prev">${m.prevLabel}: ${fmtMoneyK(k.salesPrev)}</div></div>`,
+    `<div class="kpi-card"><div class="label">Ad Spend <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${fmtMoneyK(k.spend)}</div>
+      <div class="delta ${k.spendDelta < 0 ? "up" : "neutral"}">${k.spendDelta < 0 ? "&#x25BC; " + Math.abs(k.spendDelta).toFixed(1) + "% vs last week" : "&#x25B2; +" + k.spendDelta.toFixed(1) + "% vs last week"}</div>
+      <div class="prev">${m.prevLabel}: ${fmtMoneyK(k.spendPrev)}</div></div>`,
+    `<div class="kpi-card"><div class="label">Gross Profit <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${fmtMoneyK(k.gp)}</div>
+      ${deltaHtml(k.gpDeltaDir, k.gpDelta, "%")}
+      <div class="prev">${m.prevLabel}: ${fmtMoneyK(k.gpPrev)}</div></div>`,
+    `<div class="kpi-card"><div class="label">TACOS <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${k.tacos.toFixed(1)}%</div>
+      <div class="delta ${k.tacosDeltaDir === "up" ? "up" : "down"}">${k.tacosDelta > 0 ? "&#x25B2; +" : "&#x25BC; "}${k.tacosDelta.toFixed(1)}pp vs last week</div>
+      <div class="prev">${m.prevLabel}: ${k.tacosPrev.toFixed(1)}% &nbsp;|&nbsp; All Ad Spend / Total Sales</div></div>`,
+    `<div class="kpi-card"><div class="label">ACOS <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${k.acos.toFixed(1)}%</div>
+      <div class="delta neutral">All Ad Spend / PPC Ad Sales</div>
+      <div class="prev">${k.acosNote}</div></div>`,
+    `<div class="kpi-card"><div class="label">Organic % <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${k.organic.toFixed(1)}%</div>
+      <div class="delta neutral">of Total Sales</div>
+      <div class="prev">Organic Sales: ${fmtMoneyK(k.organicSales)}</div></div>`,
+    `<div class="kpi-card"><div class="label">CPC <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">$${k.cpc.toFixed(2)}</div>
+      <div class="delta neutral">Cost Per Click</div>
+      <div class="prev">${k.cpcClicks.toLocaleString()} total clicks</div></div>`,
+    `<div class="kpi-card"><div class="label">CVR (PPC) <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${k.cvr.toFixed(1)}%</div>
+      <div class="delta neutral">Click-to-Purchase Rate</div>
+      <div class="prev">${k.cvrNote}</div></div>`,
+    `<div class="kpi-card"><div class="label">Unit Session % <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${k.unitSess.toFixed(1)}%</div>
+      <div class="delta neutral">Units / Sessions (BR)</div>
+      <div class="prev">${k.unitSessNote}</div></div>`,
+    `<div class="kpi-card"><div class="label">Units Ordered <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${k.units.toLocaleString()}</div>
+      ${deltaHtml(k.unitsDeltaDir, k.unitsDelta, "%")}
+      <div class="prev">${m.prevLabel}: ${k.unitsPrev.toLocaleString()}</div></div>`,
+    `<div class="kpi-card"><div class="label">Sessions <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${k.sessions.toLocaleString()}</div>
+      <div class="delta neutral">Business Report</div>
+      <div class="prev">${k.sessionsNote}</div></div>`,
+    `<div class="kpi-card"><div class="label">Buy Box % <span class="${badgeClass}">${wk}</span></div>
+      <div class="value">${k.buybox.toFixed(1)}%</div>
+      <div class="delta ${k.buyboxDeltaDir === "up" ? "up" : "down"}">${k.buyboxDelta > 0 ? "&#x25B2; +" : "&#x25BC; "}${Math.abs(k.buyboxDelta).toFixed(1)}pp vs last week</div>
+      <div class="prev">${m.prevLabel}: ${k.buyboxPrev.toFixed(1)}%</div></div>`,
+  ];
+  $("kpiGrid").innerHTML = cards.join("");
+}
+
+// ============================================================
+// WoW GRID
+// ============================================================
+function buildWowGrid() {
+  const m = weekMeta[currentWeek];
+  const w = m.wow;
+  const p = m.prevLabel, c = m.currLabel;
+
+  function wowCard(metric, prevV, currV, fmt, isGood) {
+    const diff = currV - prevV;
+    const pct = prevV !== 0 ? ((diff / Math.abs(prevV)) * 100) : 0;
+    const color = (diff >= 0 && isGood) || (diff < 0 && !isGood) ? "var(--green)" : "var(--red)";
+    const sign = diff >= 0 ? "+" : "";
+    const changeStr = (typeof fmt === "function")
+      ? sign + fmt(diff) + " (" + sign + pct.toFixed(1) + "%)"
+      : sign + diff.toFixed(1) + "pp";
+    return `<div class="wow-card">
+      <div class="metric">${metric}</div>
+      <div class="row"><span class="wk-label">${p}</span><span class="wk-val">${typeof fmt === "function" ? fmt(prevV) : prevV.toFixed(1)+"%"}</span></div>
+      <div class="row"><span class="wk-label">${c}</span><span class="wk-val">${typeof fmt === "function" ? fmt(currV) : currV.toFixed(1)+"%"}</span></div>
+      <div class="change-row"><span class="chg-label">Change</span><span class="chg-val" style="color:${color}">${changeStr}</span></div>
+    </div>`;
+  }
+
+  const fmtDollar = v => "$" + Math.abs(v).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:0});
+  const fmtInt = v => v.toLocaleString("en-US",{maximumFractionDigits:0});
+
+  $("wowGrid").innerHTML = [
+    wowCard("Total Sales", w.sales.prev, w.sales.curr, fmtDollar, true),
+    wowCard("Gross Profit", w.gp.prev, w.gp.curr, fmtDollar, true),
+    wowCard("Ad Spend", w.spend.prev, w.spend.curr, fmtDollar, false),
+    wowCard("TACOS", w.tacos.prev, w.tacos.curr, null, false),
+    wowCard("Units Ordered", w.units.prev, w.units.curr, fmtInt, true),
+    wowCard("Buy Box %", w.buybox.prev, w.buybox.curr, null, true),
+  ].join("");
+}
+
+// ============================================================
+// SKU WoW TABLE
+// ============================================================
+function buildSkuWow() {
+  const data = currentWeek === "w18" ? skuDataW18 : skuDataW19;
+  const m = weekMeta[currentWeek];
+  const tbody = $("skuWowBody");
+  tbody.innerHTML = data.map(r => {
+    const gcCls = r.gc >= 0 ? "green" : "red";
+    const gcSign = r.gc >= 0 ? "+" : "-";
+    return `<tr>
+      <td><strong>${r.sku}</strong></td>
+      <td>${fmtMoney(r.sprev)}</td>
+      <td>${fmtMoney(r.scurr)}</td>
+      <td>${r.gprev < 0 ? "-$"+Math.abs(r.gprev).toFixed(2) : "$"+r.gprev.toFixed(2)}</td>
+      <td>${r.gcurr < 0 ? "-$"+Math.abs(r.gcurr).toFixed(2) : "$"+r.gcurr.toFixed(2)}</td>
+      <td><span class="pill ${gcCls}">${gcSign}$${Math.abs(r.gc).toFixed(2)}</span></td>
+      <td>${r.mprev.toFixed(1)}%</td>
+      <td>${r.mcurr.toFixed(1)}%</td>
+      <td>${r.aprev.toFixed(1)}%</td>
+      <td>${r.acurr.toFixed(1)}%</td>
+      <td>${r.uprev}</td>
+      <td>${r.ucurr}</td>
+    </tr>`;
+  }).join("");
+  $("skuCount").textContent = data.length;
+}
+
+// ============================================================
+// SKU PERFORMANCE TABLE
+// ============================================================
+function buildSkuPerf() {
+  const data = currentWeek === "w18" ? skuDataW18 : skuDataW19;
+  const tbody = $("skuPerfBody");
+  tbody.innerHTML = data.map(r => {
+    const gpCls = r.gcurr >= 0 ? "green" : "red";
+    const gcCls = r.gc >= 0 ? "green" : "red";
+    const gcSign = r.gc >= 0 ? "+" : "";
+    return `<tr>
+      <td><strong>${r.sku}</strong></td>
+      <td>${r.ucurr}</td>
+      <td>${fmtMoney(r.scurr)}</td>
+      <td>${r.adcurr > 0 ? "$"+r.adcurr.toFixed(2) : "—"}</td>
+      <td><span class="pill ${gpCls}">${r.gcurr < 0 ? "-$"+Math.abs(r.gcurr).toFixed(2) : "$"+r.gcurr.toFixed(2)}</span></td>
+      <td>${r.mcurr.toFixed(1)}%</td>
+      <td>${r.acurr.toFixed(1)}%</td>
+      <td><span class="pill ${gcCls}">${gcSign}$${Math.abs(r.gc).toFixed(2)}</span></td>
+    </tr>`;
+  }).join("");
+  $("skuPerfCount").textContent = data.length;
+}
+
+// ============================================================
+// TOP5 / BOT5
+// ============================================================
+function buildTop5Bot5() {
+  const data = currentWeek === "w18" ? skuDataW18 : skuDataW19;
+  const m = weekMeta[currentWeek];
+  const sorted = [...data].filter(r => r.scurr > 0).sort((a,b) => b.gcurr - a.gcurr);
+  const top5 = sorted.slice(0,5);
+  const bot5 = [...data].filter(r => r.scurr > 0).sort((a,b) => a.gcurr - b.gcurr).slice(0,5);
+  
+  function mkRows(arr) {
+    return arr.map(r => {
+      const gpCls = r.gcurr >= 0 ? "green" : "red";
+      const gpStr = r.gcurr < 0 ? "-$"+Math.abs(r.gcurr).toFixed(2) : "$"+r.gcurr.toFixed(2);
+      const adStr = r.adcurr > 0 ? "$"+r.adcurr.toFixed(2) : "—";
+      return `<tr><td><strong>${r.sku}</strong></td><td>${r.ucurr}</td><td>${fmtMoney(r.scurr)}</td><td>${adStr}</td><td class="mono"><span class="pill ${gpCls}">${gpStr}</span></td><td>${r.mcurr.toFixed(1)}%</td><td>${r.acurr.toFixed(1)}%</td></tr>`;
+    }).join("");
+  }
+  $("top5Body").innerHTML = mkRows(top5);
+  $("bot5Body").innerHTML = mkRows(bot5);
+}
+
+// ============================================================
+// CHARTS
+// ============================================================
+function buildCharts() {
+  const m = weekMeta[currentWeek];
+  // Destroy existing
+  if(chartSalesGP_inst){ chartSalesGP_inst.destroy(); chartSalesGP_inst = null; }
+  if(chartSpendGP_inst){ chartSpendGP_inst.destroy(); chartSpendGP_inst = null; }
+  if(chartTop5_inst){ chartTop5_inst.destroy(); chartTop5_inst = null; }
+
+  chartSalesGP_inst = new Chart($("chartSalesGP"), {
+    type:"bar",
+    data:{
+      labels: m.chartLabels,
+      datasets:[
+        {label:"Total Sales", data:m.chartSales, backgroundColor:["#93c5fd","#3b82f6"], borderRadius:5},
+        {label:"Gross Profit", data:m.chartGP, backgroundColor:["#86efac","#22c55e"], borderRadius:5}
+      ]
+    },
+    options:{responsive:true,plugins:{legend:{position:"bottom"}},scales:{y:{beginAtZero:true,ticks:{callback:v=>"$"+v.toLocaleString()}}}}
+  });
+
+  chartSpendGP_inst = new Chart($("chartSpendGP"), {
+    type:"bar",
+    data:{
+      labels: m.chartLabels,
+      datasets:[
+        {label:"Ad Spend", data:m.chartSpend, backgroundColor:["#fca5a5","#ef4444"], borderRadius:5},
+        {label:"Gross Profit", data:m.chartGP, backgroundColor:["#86efac","#22c55e"], borderRadius:5}
+      ]
+    },
+    options:{responsive:true,plugins:{legend:{position:"bottom"}},scales:{y:{beginAtZero:true,ticks:{callback:v=>"$"+v.toLocaleString()}}}}
+  });
+
+  chartTop5_inst = new Chart($("chartTop5"), {
+    type:"bar",
+    data:{
+      labels: m.top5,
+      datasets:[{label:"Gross Profit "+m.currLabel, data:m.top5GP, backgroundColor:["#3b82f6","#8b5cf6","#22c55e","#f59e0b","#06b6d4"], borderRadius:5}]
+    },
+    options:{indexAxis:"y",responsive:true,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>"$"+v}}}}
+  });
+}
+
+// ============================================================
+// FILTER / SORT
+// ============================================================
+function filterSkuTable(q){
+  $("skuWowBody").querySelectorAll("tr").forEach(r => r.style.display = r.cells[0].textContent.toLowerCase().includes(q.toLowerCase()) ? "" : "none");
+}
+function filterSkuPerfTable(q){
+  $("skuPerfBody").querySelectorAll("tr").forEach(r => r.style.display = r.cells[0].textContent.toLowerCase().includes(q.toLowerCase()) ? "" : "none");
+}
+function sortTable(th){
+  const table = th.closest("table");
+  const tbody = table.querySelector("tbody");
+  const rows = Array.from(tbody.querySelectorAll("tr"));
+  const col = Array.from(th.parentNode.children).indexOf(th);
+  const asc = th.classList.toggle("sorted-asc");
+  th.parentNode.querySelectorAll("th").forEach(h=>{if(h!==th){h.classList.remove("sorted-asc","sorted-desc");}});
+  if(!asc) th.classList.add("sorted-desc");
+  rows.sort((a,b)=>{
+    const av = a.cells[col].textContent.replace(/[$,%+▲▼]/g,"").trim();
+    const bv = b.cells[col].textContent.replace(/[$,%+▲▼]/g,"").trim();
+    const an=parseFloat(av),bn=parseFloat(bv);
+    if(!isNaN(an)&&!isNaN(bn)) return asc?an-bn:bn-an;
+    return asc?av.localeCompare(bv):bv.localeCompare(av);
+  });
+  rows.forEach(r=>tbody.appendChild(r));
+}
+
+// ============================================================
+// TABS / SUB-TABS
+// ============================================================
+function switchTab(id){
+  document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  $("tab-"+id).classList.add("active");
+  event.currentTarget.classList.add("active");
+}
+function switchSubTab(id){
+  const prefix = id.startsWith("w18-") ? "w18-" : "w19-";
+  document.querySelectorAll(`[id^="sub-${prefix}"]`).forEach(t=>t.classList.remove("active"));
+  // Also deactivate the right set of sub-tab-btn
+  const allSubBtns = document.querySelectorAll(".sub-tab-btn");
+  allSubBtns.forEach(b=>{if(b.getAttribute("onclick").includes(prefix))b.classList.remove("active");});
+  $("sub-"+id).classList.add("active");
+  event.currentTarget.classList.add("active");
+}
+
+// ============================================================
+// INIT
+// ============================================================
+buildKPIs();
+buildWowGrid();
+buildSkuWow();
+buildSkuPerf();
+buildTop5Bot5();
+buildCharts();
+</script>
+</body>
+</html>
